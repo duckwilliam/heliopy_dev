@@ -45,7 +45,6 @@ class Sun:
     def hour(self):
         return int(self.date.strftime(%-H)) 
 
-
     @property
     def et_illuminance(self):
         """
@@ -82,7 +81,7 @@ class Sun:
 
     @property
     def local_solar_time_rad(self):
-        _lt = int(self.current_time)
+        _lt = self.hour
         _tcf_rad = self.time_correction_factor_rad
         _lst = _lt + (_tcf_rad / 60)
         return self.rounder(_lst, 2)
