@@ -27,7 +27,7 @@ def updater(func):
 
 class Time:
     def __init__(self,
-                 time_input =N one,
+                 time_input = None,
                  day_input: str = None,
                  timezone_input: str = None,
                  ):
