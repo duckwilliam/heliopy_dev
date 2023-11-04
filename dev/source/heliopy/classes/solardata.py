@@ -20,7 +20,8 @@ class Sun:
                  date: datetime.datetime,
                  date_utc: datetime.datetime,
                  day_of_the_year: int,
-                 cloud_coverage: int
+                 cloud_coverage: int,
+                 timezone
                  ):
         self.latitude = latitude
         self.longitude = longitude
@@ -28,6 +29,7 @@ class Sun:
         self.date_utc = date_utc
         self.day_of_the_year = day_of_the_year
         self.cloud_coverage = cloud_coverage
+        self.timezone = timezone
 
     def rounder(self, number: float, decimals: int):
         """
@@ -319,8 +321,8 @@ class Sun:
        
     @property
     def sun_up(self):
-        _rise: datetime = self.sunrise_datetime
-        _set: datetime = self.sunset_datetime
+        _rise: datetime = self.timezone.localize(self.sunrise_datetime) 
+        _set: datetime = self.timezone.localize(self.sunset_datetime) 
         _now = self.date
         return _rise < _now < _set
       
