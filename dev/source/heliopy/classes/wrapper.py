@@ -33,6 +33,10 @@ class SolarMain:
         self.requested_day = requested_day
         self.requested_hour = requested_hour
         self.requested_timezone = requested_timezone
+        self.time_init(self)
+        self.geo_init(self)
+        self.weather_init(self)
+        self.solar_init(self)
         
     def time_init(self):
         self.time_data = timedata.Time(
@@ -49,7 +53,7 @@ class SolarMain:
         self.weather = weather.Weather(
             latitude=self.latitude,
             longitude=self.longitude)
-    
+            
     def solar_init(self):
         self.solar_data = solardata.Sun(
             latitude=self.latitude,
@@ -59,6 +63,7 @@ class SolarMain:
             day_of_the_year=self.day_of_year,
             cloud_coverage=self.cloud_coverage, 
             timezone=self.timezone)
+            
     @property
     def timezone(self):
         return self.time_data.timezone
@@ -131,6 +136,11 @@ class SolarMain:
         Returns the longitude of the city.
         """
         return self.geo_data.longitude
+        
+    @property
+    def illumination(self):
+        return self.solar_data.daylight_illumination
+     
 
     @property
     def sunrise_datetime(self):
