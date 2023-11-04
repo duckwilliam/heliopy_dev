@@ -72,6 +72,7 @@ class Time:
         print(f"called time setter with {value}")
         if value is not None:
             print(f"value is not None, value is {value}")
+            print(value.type()) 
             self._time = self.convert_timestr(value)
         else:
             self._time = self.current_time
