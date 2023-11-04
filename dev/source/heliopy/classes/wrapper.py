@@ -33,16 +33,24 @@ class SolarMain:
         self.requested_day = requested_day
         self.requested_hour = requested_hour
         self.requested_timezone = requested_timezone
+        
+    def time_init(self):
         self.time_data = timedata.Time(
             time_input=self.requested_hour,
             day_input=self.requested_day,
             timezone_input=self.requested_timezone)
+        
+    def geo_init(self):
         self.geo_data = geodata.Geo(
             city_input=city,
-            country_input=country)
+            country_input=country
+            
+    def weather_init(self):
         self.weather = weather.Weather(
             latitude=self.latitude,
             longitude=self.longitude)
+    
+    def solar_init(self):
         self.solar_data = solardata.Sun(
             latitude=self.latitude,
             longitude=self.longitude,
