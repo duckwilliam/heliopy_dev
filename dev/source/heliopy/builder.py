@@ -1,5 +1,5 @@
 import classes.wrapper as wrapper
-
+import datetime
 
 def main(city: str,
          time = None,
@@ -13,6 +13,6 @@ def main(city: str,
                                requested_timezone=timezone)
     
     print(helios.latitude)
-    print(helios.sunrise_datetime)
+    print(datetime.strftime(helios.sunrise_datetime, '%H:%M')) 
     
     
