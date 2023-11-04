@@ -270,3 +270,21 @@ class Sun:
         else:
             raise ValueError("Invalid value for day.")
         return int(self.rounder(number=_daylight, decimals=0))
+        
+       
+    @property
+    def sun_up(self):
+        _rise: datetime = self.sunrise_datetime
+        _set: datetime = self.sunset_datetime
+        _date_actual = datetime.now()
+        _date_actual_str = _date_actual.strftime("%Y-%m-%d")
+        logging.debug(f"current date: {_date_actual_str}")
+        _hour = float(self.current_time)
+        _date = datetime.strptime(_date_actual_str, "%Y-%m-%d")
+        _now = _date + timedelta(hours=_hour)
+        logging.info(f"sunrise timestamp is {_rise}")
+        logging.info(f"sunset timestamp is {_set}")
+        logging.info(f"current time is {_now}")
+        _sun_up = _rise < _now < _set
+        logging.info(f"sun up: {_sun_up}")
+        return _sun_up
