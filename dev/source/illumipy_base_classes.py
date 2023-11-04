@@ -39,6 +39,10 @@ class SolarMain:
         return self.time_data.date
         
     @property
+    def utc_time(self):
+        return self.time_data.utc_time
+        
+    @property
     def time(self):
         return self.time_data.time
         
@@ -53,6 +57,14 @@ class SolarMain:
     @day.setter
     def day(self, value):
         self.time_data.day = value
+        
+    @property
+    def latitude(self):
+        return self.geo_data.latitude
+        
+    @property
+    def longitude(self):
+        return self.geo_data.longitude
      
     @property
     def sunrise_datetime(self):
