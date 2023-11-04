@@ -42,6 +42,11 @@ class Sun:
         return int(delta_hours)
 
     @property
+    def hour(self):
+        return int(self.date.strftime(%-H)) 
+
+
+    @property
     def et_illuminance(self):
         """
         Returns the ET Illuminance in Lux
