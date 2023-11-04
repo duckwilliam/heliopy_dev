@@ -30,8 +30,7 @@ if __name__ == "__main__":
                         "--time",
                         type=str,
                         help="Time as hh:mm:ss,\
-                            if none is provided, current time will be used",
-                        default=None
+                            if none is provided, current time will be used"
                         )
     parser.add_argument("-tz",
                         "--timezone",
