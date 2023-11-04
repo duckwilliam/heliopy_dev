@@ -171,7 +171,7 @@
         "kind": 6,
         "importPath": "dev.source.illumipy_illunmination",
         "description": "dev.source.illumipy_illunmination",
-        "peekOfCode": "class Sun:\n    \"\"\"\n    Class Illuminaion:\n    Calculate Outside Illumination in Lux\n    for given location and time\n    \"\"\"\n    def __init__(self,\n                 name=None,\n                 latitide: float, \n                 longitude: float,",
+        "peekOfCode": "class Sun:\n    \"\"\"\n    Class Illuminaion:\n    Calculate Outside Illumination in Lux\n    for given location and time\n    \"\"\"\n    def __init__(self,\n                 latitude: float, \n                 longitude: float,\n                 date: datetime.datetime,",
         "detail": "dev.source.illumipy_illunmination",
         "documentation": {}
     },

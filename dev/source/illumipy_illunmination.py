@@ -15,18 +15,19 @@ class Sun:
     """
  
     def __init__(self,
-                 name=None,
-                 latitide: float, 
+                 latitude: float, 
                  longitude: float,
                  date: datetime.datetime,
-                 date_utc: datetime.datetime
-                 day_of_the_year: int
+                 date_utc: datetime.datetime,
+                 day_of_the_year: int,
+                 cloud_coverage: int
                  ):
         self.latitude = latitude
         self.longitude = longitude
         self.date = date
         self.date_utc = date_utc
         self.day_of_the_year = day_of_the_year
+        self.cloud_coverage = cloud_coverage
 
     def rounder(self, number: float, decimals: int):
         """
@@ -43,7 +44,7 @@ class Sun:
 
     @property
     def hour(self):
-        return int(self.date.strftime(%-H)) 
+        return int(self.date.strftime('%-H')) 
         
     @property
     def day(self):
@@ -57,7 +58,8 @@ class Sun:
         based on time of the year.
         """
         _day_of_the_year = self.day_of_the_year
-        _et_illuminance = float(129) * (1 + 0.034 * math.cos(((2 * math.pi)/356) * (_day_of_the_year - 2)))
+        _et_illuminance = float(129) * (1 + 0.034 * math.cos(((
+            2 * math.pi)/356) * (_day_of_the_year - 2)))
         logging.info(f'calculated extraterrestrial_illuminance: {_et_illuminance}')
         return self.rounder(_et_illuminance, 2)
 
@@ -104,18 +106,31 @@ class Sun:
         return self.rounder(_da_rad, 2)
 
     @property
+    def sun_extr(self):
+        _lat = math.radians(self.latitude)
+        _da = self.declination_angle_rad
+        _corr_rad = math.radians(90.833)
+        _sun_extr = math.acos(
+            ((math.cos(_corr_rad))/(
+                math.cos(_lat) * math.cos(_da))) - (
+                    math.tan(_lat) * math.tan(_da)))
+        return _sun_extr
+       
+    @property
     def sunrise_datetime(self):
-        lat = math.radians(self.latitude)
-        da = self.declination_angle_rad
-        sunrise_hour_angle = math.acos(-1 * math.tan(lat) * math.tan(da))
-        _lst = self.local_solar_time_rad
-            _tcf_rad = self.time_correction_factor_rad
-        _lst = _lt + (_tcf_rad / 60)
-   sunrise_hour = (math.radians(15) / sunrise_hour_angle) + 12 - (_tcf_rad / 60)
-        _sunrise_dt = datetime.datetime.strptime(_sunrise_str, '%H:%M')
-        _sunrise = datetime.datetime.combine(self.day + _sunrise_dt.time())
-        return 
-
+        _tcf_rad = self.time_correction_factor_rad
+        _hra = self.sun_extr
+        sunrise_hour = (_hra / math.radians(15)) - (_tcf_rad / 60) + 12
+        sunrise_hour_td = datetime.datetime.timedelta(seconds=sunrise_hour * 3600)
+        return self.day + sunrise_hour_td
+      
+    @property
+    def sunset_datetime(self):
+        _tcf_rad = self.time_correction_factor_rad
+        _hra = -1 * self.sun_extr
+        sunset_hour = (_hra / math.radians(15)) - (_tcf_rad / 60) + 12
+        sunset_hour_td = datetime.datetime.timedelta(seconds=sunset_hour * 3600)
+        return self.day + sunset_hour_td   
 
     @property
     def altitude(self):
@@ -138,7 +153,11 @@ class Sun:
         _alt_rad = math.radians(self.altitude)
         _hra_rad = self.hour_angle_rad
         _da_rad = self.declination_angle_rad
-        _azi_rad = math.acos(((math.sin(_da_rad) * math.cos(_lat_rad)) - (math.cos(_da_rad) * math.sin(_lat_rad) * math.cos(_hra_rad))) / math.cos(_alt_rad))
+        _azi_rad = math.acos(
+            ((math.sin(_da_rad) * math.cos(_lat_rad)) - (
+                math.cos(_da_rad) * math.sin(
+                    _lat_rad) * math.cos(
+                        _hra_rad))) / math.cos(_alt_rad))
         _azi_deg = math.degrees(_azi_rad)
         return self.rounder(_azi_deg, 2)
 
@@ -183,7 +202,12 @@ class Sun:
         Calculates the air mass for a given solar altitude.
         """
         _altitude = self.altitude
-        _am_rad = 1/(math.cos(math.radians(90 - _altitude)) + 0.50572/(96.07995 - math.radians(90 - _altitude))**1.6364)
+        _am_rad = 1/(
+            math.cos(
+                math.radians(
+                    90 - _altitude)) + 0.50572/(
+                        96.07995 - math.radians(
+                            90 - _altitude))**1.6364)
       #  _air_mass = 1 / (math.cos(_altitude) + 0.50572 * (96.07995 - _altitude)**-1.6364)
         logging.info(f"air_mass: {_am_rad}")
         return self.rounder(_am_rad, 2)
@@ -232,7 +256,8 @@ class Sun:
         if _c is None:
             _direct_illuminance = 0
         else:
-            _direct_illuminance = _et_illuminance * math.exp(-1 * _c * _air_mass)
+            _direct_illuminance = _et_illuminance * math.exp(
+                -1 * _c * _air_mass)
         logging.info(f"direct_illuminance: {_direct_illuminance}")
         return self.rounder(_direct_illuminance, 2)
 
@@ -270,7 +295,6 @@ class Sun:
         _B = _B_temp if isinstance(_B_temp, float) else float(_B_temp)
         _C = _C_temp if isinstance(_C_temp, float) else float(_C_temp)
         _sky_illuminance = _A + (_B * (math.sin(_altitude))**_C)
-        logging.info(f"horizontal__sky_illuminance: {_sky_illuminance}")
         return self.rounder(_sky_illuminance, 2)
 
     @property
@@ -295,15 +319,6 @@ class Sun:
     def sun_up(self):
         _rise: datetime = self.sunrise_datetime
         _set: datetime = self.sunset_datetime
-        _date_actual = datetime.now()
-        _date_actual_str = _date_actual.strftime("%Y-%m-%d")
-        logging.debug(f"current date: {_date_actual_str}")
-        _hour = float(self.current_time)
-        _date = datetime.strptime(_date_actual_str, "%Y-%m-%d")
-        _now = _date + timedelta(hours=_hour)
-        logging.info(f"sunrise timestamp is {_rise}")
-        logging.info(f"sunset timestamp is {_set}")
-        logging.info(f"current time is {_now}")
-        _sun_up = _rise < _now < _set
-        logging.info(f"sun up: {_sun_up}")
-        return _sun_up
+        _now = self.date
+        return _rise < _now < _set
+      
