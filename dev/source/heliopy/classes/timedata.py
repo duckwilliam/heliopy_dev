@@ -32,7 +32,8 @@ class Time:
                  timezone_input: str = None,
                  ):
         self.init_complete = False
-        self.time = time_input if time_input is not None else self.current_time
+        
+        self.time = None if time_input is None else time_input
         self.day = day_input
         self.timezone = timezone_input
         self.dependent_attributes = {}
@@ -69,8 +70,9 @@ class Time:
             >>> obj.time = '12:34:56'
         """
         print(f"called time setter with {value}")
-        self._time = self.convert_timestr(value) if isinstance(value, str)\
-            else value
+        self._time = self.convert_timestr(value) if value is not None else self.current_time
+      #  self._time = self.convert_timestr(value) if isinstance(value, str)\
+          #  else value
         
         
     @property
