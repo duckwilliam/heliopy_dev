@@ -308,11 +308,11 @@ class Sun:
         the altitude in degrees. The coefficients A B and C are used to calculate the illuminance.
         @return sky illuminance as a floating point number
         """
-        if self.day is True:
+        if self.sun_up is True:
             _sky_illuminance = self.horizontal_sky_illuminance
             _horizontal_illuminance = self.horizontal_illuminance        
             _daylight = (_sky_illuminance + _horizontal_illuminance) * 1000
-        elif self.day is False:
+        elif self.sun_up is False:
             _daylight = 0
         else:
             raise ValueError("Invalid value for day.")
