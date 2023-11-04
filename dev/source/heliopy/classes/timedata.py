@@ -27,12 +27,12 @@ def updater(func):
 
 class Time:
     def __init__(self,
-                 time_input: str = None,
+                 time_input=None,
                  day_input: str = None,
                  timezone_input: str = None,
                  ):
         self.init_complete = False
-        self.time = time_input
+        self.time = time_input if time_input is not None else self.current_time
         self.day = day_input
         self.timezone = timezone_input
         self.dependent_attributes = {}
@@ -69,9 +69,8 @@ class Time:
             >>> obj.time = '12:34:56'
         """
         print(f"called time setter with {value}")
-        _time_set = value if value is not None else self.current_time
-        self._time = self.convert_timestr(_time_set) if isinstance(value, str)\
-            else _time_set
+        self._time = self.convert_timestr(value) if isinstance(value, str)\
+            else value
         
         
     @property
@@ -81,10 +80,12 @@ class Time:
     def convert_timestr(self, time_string: str):
         re_hhmmss = re.compile('(\d{1,2}:){2}\d{1,2}')
         re_hhmm = re.compile('(\d{1,2}:){1}\d{1,2}$')
-        _time_valid = f"{time_string}:00" if re_hhmm.match(time_string) is not None else time_string
+        _time_valid = f"{time_string}:00" if re_hhmm.match(
+            time_string) is not None else time_string
         if re_hhmmss.match(_time_valid) is None:
             raise ValueError("Time is not in HH:MM:SS format")
-        return datetime.datetime.time(datetime.datetime.strptime(_time_valid, "%H:%M:%S"))
+        return datetime.datetime.time(datetime.datetime.strptime(
+            _time_valid, "%H:%M:%S"))
     
     
     @property
@@ -103,10 +104,12 @@ class Time:
         return datetime.datetime.date(datetime.datetime.now())
 
     def convert_daystr(self, day_string: str):
-        re_yyyymmdd = re.compile('^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$')
+        re_yyyymmdd = re.compile(
+            '^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$')
         if re_yyyymmdd.match(day_string) is None:
             raise ValueError("Date is not in yyyy-mm-dd format")
-        return datetime.datetime.time(datetime.datetime.strptime(day_string, "%y-%m-%d"))
+        return datetime.datetime.time(datetime.datetime.strptime(
+            day_string, "%y-%m-%d"))
 
     @property
     def timezone(self):
@@ -116,7 +119,8 @@ class Time:
     @timezone.setter
     def timezone(self, value):
         _timezone_set = value if value is not None else tzlocal.get_localzone().key
-        self._timezone = _timezone_set if isinstance(_timezone_set, pytz.BaseTzInfo) else pytz.timezone(_timezone_set)
+        self._timezone = _timezone_set if isinstance(
+            _timezone_set, pytz.BaseTzInfo) else pytz.timezone(_timezone_set)
         # self._date = None
         # self.__refresh_date__ = self.date if self.init_complete else None
         
