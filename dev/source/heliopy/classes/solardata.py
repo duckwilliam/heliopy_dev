@@ -124,7 +124,7 @@ class Sun:
         print(sunrise_hour)
         sunrise_hour_td = datetime.timedelta(seconds=sunrise_hour * 3600)
         print(sunrise_hour_td)
-        _sunrise = datetime.datetime.combine(self.day, datetime.min.time()) + sunrise_hour_td
+        _sunrise = datetime.datetime.combine(self.day, datetime.datetime.min.time()) + sunrise_hour_td
         return _sunrise
       
     @property
