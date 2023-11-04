@@ -142,3 +142,13 @@ class Time:
         self._utc_time = value.astimezone(pytz.utc)
         self.append_dependent(2, 'utc_time')
     
+    @property
+    def day_of_the_year(self):
+        """
+         @brief Returns the day of the year. It is defined as the number of days since January 1 1970 00 : 00 : 00.
+         @return a tuple of the form ( year month day )
+        """
+        _date_object = self.date
+        _day_of_the_year = _date_object.timetuple().tm_yday
+        logging.info(f"calculated day of the year: {_day_of_the_year}")
+        return _day_of_the_year
