@@ -283,7 +283,7 @@ class Sun:
           @brief Returns the illuminance of the sky. This is defined as A + B * ( sin ( theta ) ** C )) where theta is the altitude in degrees. The coefficients A B and C are used to calculate the illuminance.
           @return sky illuminance as a floating point number
         """         
-        _altitude_temp = self.altitude_cached
+        _altitude_temp = self.altitude
         # This function sets the altitude to the given value.
         if isinstance(_altitude_temp, float):
             _altitude = _altitude_temp
