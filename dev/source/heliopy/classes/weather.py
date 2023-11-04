@@ -2,7 +2,7 @@ import logging
 import requests
 import os
 
-_api_key = os.environ['OPENWEATHERMAP_API_KEY'] 
+
 
 class Weather:
     """
@@ -20,6 +20,7 @@ class Weather:
         self.longitude = longitude
         self.api_weather = '/data/2.5/weather?'
         self._cloud_coverage = None
+        self.api_key = os.environ['OPENWEATHERMAP_API_KEY'] 
   
     def get_weather(self):
         """
