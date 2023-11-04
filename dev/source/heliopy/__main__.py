@@ -21,10 +21,8 @@ if __name__ == "__main__":
                         )
     parser.add_argument("-d",
                         "--day",
-                        type=str,
                         help="Date as YYYY-MM-DD,\
                             if none is provided, current date will be used",
-                        default=None
                         )
     parser.add_argument("-t",
                         "--time",
