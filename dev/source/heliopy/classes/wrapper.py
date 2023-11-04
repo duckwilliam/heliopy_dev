@@ -144,7 +144,7 @@ class SolarMain:
         """
         Returns the sunset datetime.
         """
-        return self._sunset_datetime
+        return self.time_data.sunset_datetime
 
     @sunset_datetime.setter
     def sunset_datetime(self, value):
