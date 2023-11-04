@@ -1,1 +1,1 @@
-from heliopy.builder import main
+from builder import main
