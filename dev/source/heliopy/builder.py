@@ -48,6 +48,20 @@ def main(city: str,
         geo_init()          reinitialise geo_data object 
         weather_init()      reinitialise weather object
         solar_init()        reinitialise solar_data object 
+        time_data. 
+                utc_time                get UTC time as datetime object
+        solar_data. 
+                et_illuminance          get extraterrestrial illuminance 
+                local_standard_time_meridian_rad
+                                        get LSTM in radians 
+                equation_of_time_rad    get EOT in radians
+                time_correction_factor_rad
+                                        get time correction factor in radians 
+                local_solar_time_rad    get local solar time in radians 
+                hour_angle_rad          get hour angle in radians 
+                declination_angle_rad   get solar declination in radians 
+                altitide                get solar altitude in degrees
+                solar_azimut            get solar azimuth in degrees 
         
         
         
