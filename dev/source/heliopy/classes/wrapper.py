@@ -32,6 +32,7 @@ class SolarMain:
         self.country = country
         self.requested_day = requested_day
         self.requested_hour = None if requested_hour is None else requested_hour
+        print(self, type(requested_hour))
         self.requested_timezone = requested_timezone
         self.time_data = timedata.Time(
             time_input=self.requested_hour,
