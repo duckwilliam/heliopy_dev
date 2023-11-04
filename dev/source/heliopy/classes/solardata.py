@@ -129,7 +129,7 @@ class Sun:
         _tcf_rad = self.time_correction_factor_rad
         _hra = -1 * self.sun_extr
         sunset_hour = (_hra / math.radians(15)) - (_tcf_rad / 60) + 12
-        sunset_hour_td = datetime.datetime.timedelta(seconds=sunset_hour * 3600)
+        sunset_hour_td = datetime.timedelta(seconds=sunset_hour * 3600)
         return self.day + sunset_hour_td   
 
     @property
