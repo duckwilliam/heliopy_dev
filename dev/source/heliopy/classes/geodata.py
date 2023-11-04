@@ -54,9 +54,9 @@ class Geo:
     def get_geodata(self):
         if self.city is None:
             raise ValueError("City is not set")
-        if self.country is None:
-            raise ValueError("Country is not set")
-        location = self.geo.geocode(f"{self.city}, {self.country}")
+        location_parms = "{_cty}{_Country}".format(
+            _city=self.city, _country=f", {self.country}" if self.country is not None else None)
+        location = self.geo.geocode(location_parms)
         self.longitude = location.longitude
         self.latitude = location.latitude
         
