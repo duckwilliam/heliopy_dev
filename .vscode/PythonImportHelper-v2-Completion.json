@@ -68,28 +68,30 @@
         "documentation": {}
     },
     {
+        "label": "geodata",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "geodata",
+        "description": "geodata",
+        "detail": "geodata",
+        "documentation": {}
+    },
+    {
+        "label": "timedata",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "timedata",
+        "description": "timedata",
+        "detail": "timedata",
+        "documentation": {}
+    },
+    {
         "label": "math",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "math",
         "description": "math",
         "detail": "math",
-        "documentation": {}
-    },
-    {
-        "label": "Basedata",
-        "importPath": "illumipy.classes.base_classes",
-        "description": "illumipy.classes.base_classes",
-        "isExtraImport": true,
-        "detail": "illumipy.classes.base_classes",
-        "documentation": {}
-    },
-    {
-        "label": "Weather",
-        "importPath": "illumipy.classes.base_classes",
-        "description": "illumipy.classes.base_classes",
-        "isExtraImport": true,
-        "detail": "illumipy.classes.base_classes",
         "documentation": {}
     },
     {
@@ -165,11 +167,11 @@
         "documentation": {}
     },
     {
-        "label": "Illumination",
+        "label": "Sun",
         "kind": 6,
         "importPath": "dev.source.illumipy_illunmination",
         "description": "dev.source.illumipy_illunmination",
-        "peekOfCode": "class Illumination(Basedata):\n    \"\"\"\n    Class Illuminaion:\n    Calculate Outside Illumination in Lux\n    for given location and time\n    \"\"\"\n    def __init__(self,\n                 name=None,\n                 api_key=None,\n                 api_base=None,",
+        "peekOfCode": "class Sun:\n    \"\"\"\n    Class Illuminaion:\n    Calculate Outside Illumination in Lux\n    for given location and time\n    \"\"\"\n    def __init__(self,\n                 name=None,\n                 latitide: float, \n                 longitude: float,",
         "detail": "dev.source.illumipy_illunmination",
         "documentation": {}
     },
