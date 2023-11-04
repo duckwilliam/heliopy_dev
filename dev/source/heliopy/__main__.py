@@ -28,7 +28,6 @@ if __name__ == "__main__":
                         )
     parser.add_argument("-t",
                         "--time",
-                        type=str,
                         help="Time as hh:mm:ss,\
                             if none is provided, current time will be used"
                         )
