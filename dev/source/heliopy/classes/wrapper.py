@@ -49,7 +49,11 @@ class SolarMain:
             date=self.date,
             date_utc=self.utc_time,
             day_of_the_year=self.day_of_year,
-            cloud_coverage=self.cloud_coverage)
+            cloud_coverage=self.cloud_coverage, 
+            timezone=self.timezone)
+    @property
+    def timezone(self):
+        return self.time_data.timezone
 
     @property
     def date(self):
