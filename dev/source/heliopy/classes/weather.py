@@ -55,7 +55,7 @@ class Weather:
         Takes the specific sub-url and parameters as input.
         """
         logging.debug('using requester')
-        _api_url: str = f"https://api.openweathermap.org/{_api_suburl}"
+        _api_url: str = f"https://api.openweathermap.org{_api_suburl}"
         parameters["appid"] = self.api_key
         _parameters = parameters
         logging.debug(f"parameters: {_parameters}")
