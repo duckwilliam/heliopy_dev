@@ -1,1 +1,1 @@
-from builder import main
+import builder
