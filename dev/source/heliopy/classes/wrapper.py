@@ -209,7 +209,7 @@ class SolarMain:
             value: The value to set the requested day.
         """
         logging.info(f"Setting requested_day: {value}")
-        self._requested_day = str(value)
+        self._requested_day = value
 
     @property
     def requested_hour(self):
