@@ -12,7 +12,7 @@ class SolarMain:
                  name=None,
                  country: str = None,
                  requested_day: str = None,
-                 requested_hour: str = None,
+                 requested_hour = None,
                  requested_timezone: str = None
                  ):
         """
