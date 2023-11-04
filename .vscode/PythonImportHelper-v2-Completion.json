@@ -1,0 +1,248 @@
+[
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "geopy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "geopy",
+        "description": "geopy",
+        "detail": "geopy",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "datetime",
+        "description": "datetime",
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPError",
+        "importPath": "requests.exceptions",
+        "description": "requests.exceptions",
+        "isExtraImport": true,
+        "detail": "requests.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "math",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "math",
+        "description": "math",
+        "detail": "math",
+        "documentation": {}
+    },
+    {
+        "label": "Basedata",
+        "importPath": "illumipy.classes.base_classes",
+        "description": "illumipy.classes.base_classes",
+        "isExtraImport": true,
+        "detail": "illumipy.classes.base_classes",
+        "documentation": {}
+    },
+    {
+        "label": "Weather",
+        "importPath": "illumipy.classes.base_classes",
+        "description": "illumipy.classes.base_classes",
+        "isExtraImport": true,
+        "detail": "illumipy.classes.base_classes",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "argparse",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "argparse",
+        "description": "argparse",
+        "detail": "argparse",
+        "documentation": {}
+    },
+    {
+        "label": "tzlocal",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tzlocal",
+        "description": "tzlocal",
+        "detail": "tzlocal",
+        "documentation": {}
+    },
+    {
+        "label": "pytz",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pytz",
+        "description": "pytz",
+        "detail": "pytz",
+        "documentation": {}
+    },
+    {
+        "label": "functools",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "functools",
+        "description": "functools",
+        "detail": "functools",
+        "documentation": {}
+    },
+    {
+        "label": "Geo",
+        "kind": 6,
+        "importPath": "dev.source.geodata",
+        "description": "dev.source.geodata",
+        "peekOfCode": "class Geo:\n    def __init__(self,\n                 city_input: str,\n                 country_input: str = None\n                 ):\n        self.geo = geopy.Nominatim(user_agent=\"heliopy\")\n        self._city = city_input\n        self._country = country_input\n        self.get_geodata()\n    @property",
+        "detail": "dev.source.geodata",
+        "documentation": {}
+    },
+    {
+        "label": "SolarMain",
+        "kind": 6,
+        "importPath": "dev.source.illumipy_base_classes",
+        "description": "dev.source.illumipy_base_classes",
+        "peekOfCode": "class SolarMain:\n    def __init__(self,\n                 city: str,\n                 name=None,\n                 country: str = None,\n                 requested_day: str = None,\n                 requested_hour: str = None,\n                 requested_timezone: str = None\n                 ):\n        logging.info(\"Initializing BaseData class.\")",
+        "detail": "dev.source.illumipy_base_classes",
+        "documentation": {}
+    },
+    {
+        "label": "Weather",
+        "kind": 6,
+        "importPath": "dev.source.illumipy_base_classes",
+        "description": "dev.source.illumipy_base_classes",
+        "peekOfCode": "class Weather(Basedata):\n    \"\"\"\n    Weather class:\n    Using the OpenWeatherMap API, get current weather\n    infomation for given time and location.\n    \"\"\"\n    def __init__(self,\n                 name=None,\n                 api_key=None,\n                 api_base=None,",
+        "detail": "dev.source.illumipy_base_classes",
+        "documentation": {}
+    },
+    {
+        "label": "Illumination",
+        "kind": 6,
+        "importPath": "dev.source.illumipy_illunmination",
+        "description": "dev.source.illumipy_illunmination",
+        "peekOfCode": "class Illumination(Basedata):\n    \"\"\"\n    Class Illuminaion:\n    Calculate Outside Illumination in Lux\n    for given location and time\n    \"\"\"\n    def __init__(self,\n                 name=None,\n                 api_key=None,\n                 api_base=None,",
+        "detail": "dev.source.illumipy_illunmination",
+        "documentation": {}
+    },
+    {
+        "label": "get_local_timezone",
+        "kind": 2,
+        "importPath": "dev.source.scratchpad",
+        "description": "dev.source.scratchpad",
+        "peekOfCode": "def get_local_timezone(timezone: str = None):\n    \"\"\"\n    Takes timezone string and returns pytz timezone object. \n    If no timezone is specified, it will return the local timezone.\n    \"\"\"\n    _timezone = tzlocal.get_localzone().key if timezone is None else timezone\n    return pytz.timezone(_timezone)\ndef assign_timezone(date: datetime, timezone):\n    \"\"\"\n    Takes date as datetime object and assigns it a timezone.",
+        "detail": "dev.source.scratchpad",
+        "documentation": {}
+    },
+    {
+        "label": "assign_timezone",
+        "kind": 2,
+        "importPath": "dev.source.scratchpad",
+        "description": "dev.source.scratchpad",
+        "peekOfCode": "def assign_timezone(date: datetime, timezone):\n    \"\"\"\n    Takes date as datetime object and assigns it a timezone.\n    Returns datetime object with timezone.\n    \"\"\"\n    return timezone.localize(date)\ndef get_utc_time(local_date: datetime):\n    \"\"\"\n    Shows converts date as datetime object to UTC.\n    Returns UTC time as datetime object.",
+        "detail": "dev.source.scratchpad",
+        "documentation": {}
+    },
+    {
+        "label": "get_utc_time",
+        "kind": 2,
+        "importPath": "dev.source.scratchpad",
+        "description": "dev.source.scratchpad",
+        "peekOfCode": "def get_utc_time(local_date: datetime):\n    \"\"\"\n    Shows converts date as datetime object to UTC.\n    Returns UTC time as datetime object.\n    \"\"\"\n    return local_date.astimezone(pytz.utc)\ndef main(date: datetime, local_timezone: str = None):\n    \"\"\"\n    Main function, runs all other functions.\n    \"\"\"",
+        "detail": "dev.source.scratchpad",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "dev.source.scratchpad",
+        "description": "dev.source.scratchpad",
+        "peekOfCode": "def main(date: datetime, local_timezone: str = None):\n    \"\"\"\n    Main function, runs all other functions.\n    \"\"\"\n    _local_timezone = get_local_timezone(local_timezone) if local_timezone is\\\n        not None else get_local_timezone()\n    date_with_timezone = assign_timezone(date, _local_timezone)\n    utc_time = get_utc_time(date_with_timezone)\n    print(f\"Local Time: {date_with_timezone}\")\n    print(f\"UTC Time: {utc_time}\")",
+        "detail": "dev.source.scratchpad",
+        "documentation": {}
+    },
+    {
+        "label": "current_day",
+        "kind": 5,
+        "importPath": "dev.source.scratchpad",
+        "description": "dev.source.scratchpad",
+        "peekOfCode": "current_day = datetime.date(datetime.now())\ncurrent_time = datetime.time(datetime.now())\ndef get_local_timezone(timezone: str = None):\n    \"\"\"\n    Takes timezone string and returns pytz timezone object. \n    If no timezone is specified, it will return the local timezone.\n    \"\"\"\n    _timezone = tzlocal.get_localzone().key if timezone is None else timezone\n    return pytz.timezone(_timezone)\ndef assign_timezone(date: datetime, timezone):",
+        "detail": "dev.source.scratchpad",
+        "documentation": {}
+    },
+    {
+        "label": "current_time",
+        "kind": 5,
+        "importPath": "dev.source.scratchpad",
+        "description": "dev.source.scratchpad",
+        "peekOfCode": "current_time = datetime.time(datetime.now())\ndef get_local_timezone(timezone: str = None):\n    \"\"\"\n    Takes timezone string and returns pytz timezone object. \n    If no timezone is specified, it will return the local timezone.\n    \"\"\"\n    _timezone = tzlocal.get_localzone().key if timezone is None else timezone\n    return pytz.timezone(_timezone)\ndef assign_timezone(date: datetime, timezone):\n    \"\"\"",
+        "detail": "dev.source.scratchpad",
+        "documentation": {}
+    },
+    {
+        "label": "Time",
+        "kind": 6,
+        "importPath": "dev.source.timedata",
+        "description": "dev.source.timedata",
+        "peekOfCode": "class Time:\n    def __init__(self,\n                 time_input: str = None,\n                 day_input: str = None,\n                 timezone_input: str = None,\n                 ):\n        self.init_complete = False\n        self.time = time_input\n        self.day = day_input\n        self.timezone = timezone_input",
+        "detail": "dev.source.timedata",
+        "documentation": {}
+    },
+    {
+        "label": "updater",
+        "kind": 2,
+        "importPath": "dev.source.timedata",
+        "description": "dev.source.timedata",
+        "peekOfCode": "def updater(func):\n    @functools.wraps(func)\n    def wrapper(self, *args, **kwargs):\n        print(\"wrapper start\")\n        method = func(self, *args, **kwargs)\n        print(f\"method {func} called\")\n        for level in self.dependent_attributes.keys():\n            for attr in self.dependent_attributes[level]:\n                setattr(self, attr, None)\n                raise AttributeError(f\"The {attr} is None.\")\\",
+        "detail": "dev.source.timedata",
+        "documentation": {}
+    }
+]
