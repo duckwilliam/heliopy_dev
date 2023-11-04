@@ -119,18 +119,18 @@ class Sun:
     @property
     def sunrise_datetime(self):
         _tcf_rad = self.time_correction_factor_rad
-        _hra = self.sun_extr
+        _hra = -1 * self.sun_extr
         sunrise_hour = (_hra / math.radians(15)) - (_tcf_rad / 60) + 12
         print(sunrise_hour)
         sunrise_hour_td = datetime.timedelta(seconds=sunrise_hour * 3600)
         print(sunrise_hour_td)
-        _sunrise = self.day + sunrise_hour_td
+        _sunrise = datetime.combine(self.day, datetime.min.time()) + sunrise_hour_td
         return _sunrise
       
     @property
     def sunset_datetime(self):
         _tcf_rad = self.time_correction_factor_rad
-        _hra = -1 * self.sun_extr
+        _hra = self.sun_extr
         sunset_hour = (_hra / math.radians(15)) - (_tcf_rad / 60) + 12
         sunset_hour_td = datetime.timedelta(seconds=sunset_hour * 3600)
         _sunset = self.day + sunset_hour_td   
