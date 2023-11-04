@@ -105,8 +105,11 @@ class Sun:
 
     @property
     def sunrise_datetime(self):
+        lat = math.radians(self.latitude)
+        da = self.declination_angle_rad
+        sunrise_time = math.acos(-1 * math.tan(lat) * math.tan(da))
         _sunrise_dt = datetime.datetime.strptime(_sunrise_str, '%H:%M')
-        _sunrise = datetime.datetime.combine(self.day + _sunrise_dt
+        _sunrise = datetime.datetime.combine(self.day + _sunrise_dt.time())
         return 
 
 
