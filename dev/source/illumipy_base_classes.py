@@ -27,18 +27,32 @@ class SolarMain:
         self.requested_day = requested_day
         self.requested_hour = requested_hour
         self.requested_timezone = requested_timezone
-        self.time_data = Time(time_input = self.requested_hour,
+        self.time_data = timedata.Time(time_input = self.requested_hour,
                               day_input = self.requested_day,
                               timezone_input = self.requested_timezone
                               )
-        self.geo_data = Geo(city_input = city, country_input = country)
+        self.geo_data = geodata.Geo(city_input = city, country_input = country)
     
     
     @property
-    def date_utc(self):
-        if self._date_utc is None:
-            self.date_utc = datetime.utcfromtimestamp
-     
+    def date(self):
+        return self.time_data.date
+        
+    @property
+    def time(self):
+        return self.time_data.time
+        
+    @time.setter
+    def time(self, value):
+        self.time_data.time = value
+        
+    @property
+    def day(self):
+        return self.time_data.day
+        
+    @day.setter
+    def day(self, value):
+        self.time_data.day = value
      
     @property
     def sunrise_datetime(self):
