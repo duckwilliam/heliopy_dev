@@ -59,6 +59,11 @@ class SolarMain:
         self.time_data.day = value
         
     @property
+    def day_of_year(self):
+        return self.time_data.day_of_the_year
+        
+        
+    @property
     def latitude(self):
         return self.geo_data.latitude
         
