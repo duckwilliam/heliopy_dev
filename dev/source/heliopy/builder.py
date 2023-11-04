@@ -1,3 +1,11 @@
+"""
+Heliopy Builder Module:
+use the main() function in this module to create a 'helios' object
+which stores and calculates the desired values. For a full description 
+of available parameters, check the main() docstring. 
+"""
+
+
 import classes.wrapper as wrapper
 import datetime
 
