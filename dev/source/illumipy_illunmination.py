@@ -109,7 +109,9 @@ class Sun:
         da = self.declination_angle_rad
         sunrise_hour_angle = math.acos(-1 * math.tan(lat) * math.tan(da))
         _lst = self.local_solar_time_rad
-       _lst = (math.radians(15) / sunrise_hour_angle) + 12
+            _tcf_rad = self.time_correction_factor_rad
+        _lst = _lt + (_tcf_rad / 60)
+   sunrise_hour = (math.radians(15) / sunrise_hour_angle) + 12 - (_tcf_rad / 60)
         _sunrise_dt = datetime.datetime.strptime(_sunrise_str, '%H:%M')
         _sunrise = datetime.datetime.combine(self.day + _sunrise_dt.time())
         return 
