@@ -31,10 +31,10 @@ def main(city: str,
     The following attributes can be read after successful creation:
     
     helios.
-        city
-        country
-        timezone
-        time
+        city                set/get city for which lat/long will be determined
+        country             set/get country city is in
+        timezone            set/get timezone
+        time                
         day
         date
         day_of_year
