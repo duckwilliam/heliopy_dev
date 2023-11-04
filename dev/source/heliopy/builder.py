@@ -2,8 +2,8 @@ import classes.wrapper as wrapper
 
 
 def main(city: str,
-         time: str = None,
-         day: str = None,
+         time = None,
+         day = None,
          country: str = None,
          timezone: str = None):
     helios = wrapper.SolarMain(city=city,
