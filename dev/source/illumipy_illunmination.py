@@ -35,6 +35,13 @@ class Sun:
         return round(number+10**(-len(str(number))-1), decimals)
 
     @property
+    def utc_time_delta(self):
+        delta = self.date - self.date_utc
+        delta_seconds = delta.total_seconds() 
+        delta_hours = divmod(delta_seconds, 3600)[0]
+        return int(delta_hours)
+
+    @property
     def et_illuminance(self):
         """
         Returns the ET Illuminance in Lux
@@ -50,7 +57,7 @@ class Sun:
         """
         calculates local standard time meridian
         """
-        _lstm_rad = math.radians(15) * self.timezone
+        _lstm_rad = math.radians(15) * self.utc_time_delta
         return self.rounder(_lstm_rad, 2)
 
     @property
