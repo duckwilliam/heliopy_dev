@@ -122,7 +122,7 @@ class Sun:
         _hra = self.sun_extr
         sunrise_hour = (_hra / math.radians(15)) - (_tcf_rad / 60) + 12
         print(sunrise_hour)
-        sunrise_hour_td = datetime.timedelta(seconds=math.degrees(sunrise_hour) * 3600)
+        sunrise_hour_td = datetime.timedelta(seconds=sunrise_hour * 3600)
         print(sunrise_hour_td)
         _sunrise = self.day + sunrise_hour_td
         return _sunrise
