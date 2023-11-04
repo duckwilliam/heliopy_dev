@@ -30,7 +30,7 @@ class SolarMain:
                               day_input = self.requested_day,
                               timezone_input = self.requested_timezone
                               )
-    
+        self.geo_data = Geo(city_input = city, country_input = country)
     
     
     @property
