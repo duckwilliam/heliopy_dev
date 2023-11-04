@@ -19,13 +19,33 @@ def main(city: str,
     updates the desired data. 
     Returns the object itself for further Processing.
     
-    The following arguments must be passed to this function:
-        
-    
+    The following arguments can be passed to this function:
+        city=[city] *required*
+        country=[country]
+        day=[date as YYYY-MM-DD]
+        time=[time as HH:MM:SS]
+        timezone=[timezone as 'REGION/CITY']
+    If no arguments for day, time and timezone are provided
+    the system time, date and timezoe will be used.
     
     The following attributes can be read after successful creation:
     
     helios.
+        city
+        country
+        timezone
+        time
+        day
+        date
+        day_of_year
+        longitide
+        latitude
+        sunrise_datetime
+        sunset_datetime
+        
+        
+        
+        
         ['illuminance']: Outside Brightness in Lux
         ['time']: Time used as %-H (e.g. 4 or 12)
         ['date']: Date used as YYYY-MM-DD
