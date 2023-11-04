@@ -227,7 +227,7 @@ class SolarMain:
             value: The value to set the requested hour.
         """
         logging.info(f"Setting requested_hour: {value}")
-        self._requested_hour = str(value)
+        self._requested_hour = value
 
     @property
     def cloud_coverage(self):
