@@ -34,14 +34,20 @@ def main(city: str,
         city                set/get city for which lat/long will be determined
         country             set/get country city is in
         timezone            set/get timezone
-        time                
-        day
-        date
-        day_of_year
-        longitide
-        latitude
-        sunrise_datetime
-        sunset_datetime
+        time                set time as string/get time as datetime object
+        day                 set day as string/get date as datetime object 
+        date                get full date as datetime object
+        day_of_year         get day of the year as integer 
+        longitide           get longitude as float
+        latitude            get latitude as float
+        sunrise_datetime    get time of sunrise as datetime object
+        sunset_datetime     get time of sunset as datetime object 
+        cloud_coverage      get current cloud coverage in % as integer 
+        time_init()         reinitialise time_dsta object 
+        geo_init()          reinitialise geo_data object 
+        weather_init()      reinitialise weather object
+        solar_init()        reinitialise solar_data object 
+        
         
         
         
