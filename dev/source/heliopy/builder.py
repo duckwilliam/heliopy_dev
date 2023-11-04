@@ -97,8 +97,5 @@ def main(city: str,
                                requested_hour=time,
                                requested_timezone=timezone)
     
-    print(helios.latitude)
-    sunrise = datetime.datetime.strftime(helios.sunrise_datetime, '%H:%M')
-    sunset = datetime.datetime.strftime(helios.sunset_datetime, '%H:%M')
-    print(f"Sunrise: {sunrise}, Sunset: {sunset}")
+    return helios
     
