@@ -13,6 +13,6 @@ def main(city: str,
                                requested_timezone=timezone)
     
     print(helios.latitude)
-    print(datetime.strftime(helios.sunrise_datetime, '%H:%M')) 
+    print(datetime.datetime.strftime(helios.sunrise_datetime, '%H:%M')) 
     
     
