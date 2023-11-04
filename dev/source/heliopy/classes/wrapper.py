@@ -126,7 +126,7 @@ class SolarMain:
         """
         Returns the sunrise datetime.
         """
-        return self.time_data.sunrise_datetime
+        return self.solar_data.sunrise_datetime
 
     @sunrise_datetime.setter
     def sunrise_datetime(self, value):
@@ -144,7 +144,7 @@ class SolarMain:
         """
         Returns the sunset datetime.
         """
-        return self.time_data.sunset_datetime
+        return self.solar_data.sunset_datetime
 
     @sunset_datetime.setter
     def sunset_datetime(self, value):
