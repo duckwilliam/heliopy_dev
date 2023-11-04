@@ -102,9 +102,12 @@ class Time:
  #  @updater
     @day.setter
     def day(self, value):
-        _day_set = value if value is not None else self.current_day
-        self._day = self.convert_daystr(_day_set) if isinstance(value, str)\
-            else _day_set
+        if value is not None:
+            print(f"value is not None, value is {value}")
+            print(type(value)) 
+            self._day = self.convert_daystr(value)
+        else:
+            self._day = self.current_day
         
     @property
     def current_day(self):
