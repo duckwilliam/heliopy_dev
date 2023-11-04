@@ -44,6 +44,11 @@ class Sun:
     @property
     def hour(self):
         return int(self.date.strftime(%-H)) 
+        
+    @property
+    def day(self):
+        return self.date.date()
+        
 
     @property
     def et_illuminance(self):
@@ -97,6 +102,13 @@ class Sun:
         _doy = self.day_of_the_year
         _da_rad = math.radians(-23.45) * math.cos(math.radians((360/365) * (_doy + 10)))
         return self.rounder(_da_rad, 2)
+
+    @property
+    def sunrise_datetime(self):
+        _sunrise_dt = datetime.datetime.strptime(_sunrise_str, '%H:%M')
+        _sunrise = datetime.datetime.combine(self.day + _sunrise_dt
+        return 
+
 
     @property
     def altitude(self):
