@@ -206,7 +206,7 @@
         "kind": 2,
         "importPath": "dev.source.heliopy.builder",
         "description": "dev.source.heliopy.builder",
-        "peekOfCode": "def main(city: str,\n         time = None,\n         day = None,\n         country: str = None,\n         timezone: str = None):\n    helios = wrapper.SolarMain(city=city,\n                               country=country,\n                               requested_day=day,\n                               requested_hour=time,\n                               requested_timezone=timezone)",
+        "peekOfCode": "def main(city: str,\n         time = None,\n         day = None,\n         country: str = None,\n         timezone: str = None):\n    \"\"\" Main function:\n    Creates an object 'helios' that generates, stores and \n    updates the desired data. \n    Returns the object itself for further Processing.\n    The following arguments can be passed to this function:",
         "detail": "dev.source.heliopy.builder",
         "documentation": {}
     },
