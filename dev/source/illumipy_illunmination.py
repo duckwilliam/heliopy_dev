@@ -4,10 +4,10 @@ General-purpose solar irradiance and brightness calculator.
 """
 import logging
 import math
-from illumipy.classes.base_classes import Basedata, Weather
+import datetime
 
 
-class Illumination(Basedata):
+class Sun:
     """
     Class Illuminaion:
     Calculate Outside Illumination in Lux
@@ -16,14 +16,9 @@ class Illumination(Basedata):
  
     def __init__(self,
                  name=None,
-                 api_key=None,
-                 api_base=None,
-                 api_loc=None,
-                 api_weather=None,
-                 city=None,
-                 country=None,
-                 requested_day=None,
-                 requested_hour=None,
+                 latitide: float, 
+                 longitude: float,
+                 date: datetime, 
                  cloud_coverage=None,
                  day=None
                  ):
