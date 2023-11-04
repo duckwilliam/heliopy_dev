@@ -7,7 +7,8 @@ import logging
 from datetime import datetime, timedelta
 import requests
 from requests.exceptions import HTTPError
-
+import geodata
+import timedata
 
 class SolarMain:
     def __init__(self,
