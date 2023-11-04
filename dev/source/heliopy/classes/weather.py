@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+
+_api_key = os.environ['OPENWEATHERMAP_API_KEY'] 
 
 class Weather:
     """
