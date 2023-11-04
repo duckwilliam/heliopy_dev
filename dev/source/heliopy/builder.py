@@ -43,10 +43,12 @@ def main(city: str,
         sunrise_datetime    get time of sunrise as datetime object
         sunset_datetime     get time of sunset as datetime object 
         cloud_coverage      get current cloud coverage in % as integer 
+        illumination        get outside Illumination in Lux as float
         time_init()         reinitialise time_dsta object 
         geo_init()          reinitialise geo_data object 
         weather_init()      reinitialise weather object
         solar_init()        reinitialise solar_data object 
+        
         
         
         
