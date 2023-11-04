@@ -5,14 +5,27 @@ which stores and calculates the desired values. For a full description
 of available parameters, check the main() docstring. 
 """
 
-
 import classes.wrapper as wrapper
 import datetime
 
 def main(city: str,
+         time = None,
+         day = None,
+         country: str = None,
+         timezone: str = None):
+             
     """ Main function:
-    Creates Illuminance object to calculate Relevant data and
-    returns a dictionary object with the following information:
+    Creates an object 'helios' that generates, stores and 
+    updates the desired data. 
+    Returns the object itself for further Processing.
+    
+    The following arguments must be passed to this function:
+        
+    
+    
+    The following attributes can be read after successful creation:
+    
+    helios.
         ['illuminance']: Outside Brightness in Lux
         ['time']: Time used as %-H (e.g. 4 or 12)
         ['date']: Date used as YYYY-MM-DD
@@ -35,10 +48,7 @@ def main(city: str,
         country: str=['Country'], api_key: str=['api key']
     If no arguments are provided, defaults to values defined in main.py.
     """
-         time = None,
-         day = None,
-         country: str = None,
-         timezone: str = None):
+    
     helios = wrapper.SolarMain(city=city,
                                country=country,
                                requested_day=day,
