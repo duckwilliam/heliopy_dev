@@ -26,6 +26,13 @@ class SolarMain:
         self.requested_day = requested_day
         self.requested_hour = requested_hour
         self.requested_timezone = requested_timezone
+        self.time_data = Time(time_input = self.requested_hour,
+                              day_input = self.requested_day,
+                              timezone_input = self.requested_timezone
+                              )
+    
+    
+    
     @property
     def date_utc(self):
         if self._date_utc is None:
