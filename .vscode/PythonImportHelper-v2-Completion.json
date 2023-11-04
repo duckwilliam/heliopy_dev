@@ -89,6 +89,15 @@
         "documentation": {}
     },
     {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
         "label": "solardata",
         "importPath": "classes",
         "description": "classes",
@@ -161,7 +170,7 @@
         "kind": 6,
         "importPath": "dev.source.heliopy.classes.timedata",
         "description": "dev.source.heliopy.classes.timedata",
-        "peekOfCode": "class Time:\n    def __init__(self,\n                 time_input=None,\n                 day_input: str = None,\n                 timezone_input: str = None,\n                 ):\n        self.init_complete = False\n        self.time = time_input if time_input is not None else self.current_time\n        self.day = day_input\n        self.timezone = timezone_input",
+        "peekOfCode": "class Time:\n    def __init__(self,\n                 time_input = None,\n                 day_input: str = None,\n                 timezone_input: str = None,\n                 ):\n        self.init_complete = False\n        self.time = None if time_input is None else time_input\n        self.day = day_input\n        self.timezone = timezone_input",
         "detail": "dev.source.heliopy.classes.timedata",
         "documentation": {}
     },
@@ -197,7 +206,7 @@
         "kind": 2,
         "importPath": "dev.source.heliopy.builder",
         "description": "dev.source.heliopy.builder",
-        "peekOfCode": "def main(city: str,\n         time: str = None,\n         day: str = None,\n         country: str = None,\n         timezone: str = None):\n    helios = wrapper.SolarMain(city=city,\n                               country=country,\n                               requested_day=day,\n                               requested_hour=time,\n                               requested_timezone=timezone)",
+        "peekOfCode": "def main(city: str,\n         time = None,\n         day = None,\n         country: str = None,\n         timezone: str = None):\n    helios = wrapper.SolarMain(city=city,\n                               country=country,\n                               requested_day=day,\n                               requested_hour=time,\n                               requested_timezone=timezone)",
         "detail": "dev.source.heliopy.builder",
         "documentation": {}
     },
