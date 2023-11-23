@@ -6,9 +6,10 @@ General-purpose solar irradiance and brightness calculator.
 import logging
 import datetime
 import re
+import functools
 import tzlocal
 import pytz
-import functools
+
 
 def updater(func):
     @functools.wraps(func)
