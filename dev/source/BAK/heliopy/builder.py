@@ -8,17 +8,17 @@ of available parameters, check the main() docstring.
 import classes.wrapper as wrapper
 import datetime
 
-
 def main(city: str,
          time=None,
          day=None,
          country: str = None,
          timezone: str = None):
+             
     """ Main function:
     Creates an object 'helios' that generates, stores and 
     updates the desired data. 
     Returns the object itself for further Processing.
-
+    
     The following arguments can be passed to this function:
         city=[city] *required*
         country=[country]
@@ -27,9 +27,9 @@ def main(city: str,
         timezone=[timezone as 'REGION/CITY']
     If no arguments for day, time and timezone are provided
     the system time, date and timezoe will be used.
-
+    
     The following attributes can be read after successful creation:
-
+    
     helios.
         city                set/get city for which lat/long will be determined
         country             set/get country city is in
@@ -62,14 +62,14 @@ def main(city: str,
                 declination_angle_rad   get solar declination in radians 
                 altitide                get solar altitude in degrees
                 solar_azimut            get solar azimuth in degrees 
-
+       
     """
-
+    
     helios = wrapper.SolarMain(city=city,
                                country=country,
                                requested_day=day,
                                requested_hour=time,
                                requested_timezone=timezone)
     
-
     return helios
+    

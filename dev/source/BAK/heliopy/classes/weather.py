@@ -1,7 +1,7 @@
 import logging
 import requests
 import os
-from . import geodata
+
 
 
 class Weather:
@@ -11,12 +11,16 @@ class Weather:
     infomation for given time and location.
     """
     def __init__(self,
-                 geo_data: geodata.Geo
+                 latitude: float,
+                 longitude: float,
+                 name=None
                  ):
-        self.geodata = geo_data
+        self.name = name if name is not None else "weather"
+        self.latitude = latitude
+        self.longitude = longitude
         self.api_weather = '/data/2.5/weather?'
         self._cloud_coverage = None
-        self.api_key = os.environ['OPENWEATHERMAP_API_KEY']
+        self.api_key = os.environ['OPENWEATHERMAP_API_KEY'] 
   
     def get_weather(self):
         """
@@ -24,8 +28,8 @@ class Weather:
         returns it as "cloud_coverage".
         """
         _parameters = {
-            "lat": self.geodata.latitude,
-            "lon": self.geodata.longitude,
+            "lat": self.latitude,
+            "lon": self.longitude,
             }
         _api_suburl = self.api_weather
         _api_response = self.requester(_api_suburl, _parameters)

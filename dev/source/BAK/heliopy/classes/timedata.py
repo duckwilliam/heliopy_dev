@@ -69,6 +69,7 @@ class Time:
             >>> obj = MyClass()
             >>> obj.time = '12:34:56'
         """
+        print(f"called time setter with {value}")
         if value is not None:
             self._time = self.convert_timestr(value)
         else:

@@ -33,10 +33,10 @@ class SolarMain:
         self.requested_day = requested_day
         self.requested_hour = requested_hour
         self.requested_timezone = requested_timezone
-        self.time_init(self)
-        self.geo_init(self)
-        self.weather_init(self)
-        self.solar_init(self)
+        self.time_init()
+        self.geo_init()
+        self.weather_init()
+        self.solar_init()
         
     def time_init(self):
         self.time_data = timedata.Time(
@@ -46,213 +46,60 @@ class SolarMain:
         
     def geo_init(self):
         self.geo_data = geodata.Geo(
-            city_input=city,
-            country_input=country
+            city_input=self.city,
+            country_input=self.country)
             
     def weather_init(self):
-        self.weather = weather.Weather(
-            latitude=self.latitude,
-            longitude=self.longitude)
+        self.weather = weather.Weather(geo_data=self.geo_data)
             
     def solar_init(self):
         self.solar_data = solardata.Sun(
-            latitude=self.latitude,
-            longitude=self.longitude,
-            date=self.date,
-            date_utc=self.utc_time,
-            day_of_the_year=self.day_of_year,
-            cloud_coverage=self.cloud_coverage, 
-            timezone=self.timezone)
+            timedata=self.time_data,
+            geodata=self.geo_data,
+            weather=self.weather)
+            
             
     @property
-    def timezone(self):
-        return self.time_data.timezone
-
-    @property
-    def date(self):
-        """
-        Returns the date for solar data.
-        """
-        return self.time_data.date
-
-    @property
-    def utc_time(self):
-        """
-        Returns the UTC time for solar data.
-        """
-        return self.time_data.utc_time
-
-    @property
-    def time(self):
-        """
-        Returns the time for solar data.
-        """
-        return self.time_data.time
-
-    @time.setter
-    def time(self, value):
-        """
-        Sets the time for solar data.
-
-        Args:
-            value: The value to set the time.
-        """
-        self.time_data.time = value
-
-    @property
-    def day(self):
-        """
-        Returns the day for solar data.
-        """
-        return self.time_data.day
-
-    @day.setter
-    def day(self, value):
-        """
-        Sets the day for solar data.
-
-        Args:
-            value: The value to set the day.
-        """
-        self.time_data.day = value
-
-    @property
-    def day_of_year(self):
-        """
-        Returns the day of the year for solar data.
-        """
-        return self.time_data.day_of_the_year
-
-    @property
-    def latitude(self):
-        """
-        Returns the latitude of the city.
-        """
-        return self.geo_data.latitude
-
-    @property
-    def longitude(self):
-        """
-        Returns the longitude of the city.
-        """
-        return self.geo_data.longitude
-        
-    @property
-    def illumination(self):
-        return self.solar_data.daylight_illumination
-     
-
-    @property
-    def sunrise_datetime(self):
-        """
-        Returns the sunrise datetime.
-        """
-        return self.solar_data.sunrise_datetime
-
-    @sunrise_datetime.setter
-    def sunrise_datetime(self, value):
-        """
-        Sets the sunrise datetime.
-
-        Args:
-            value: The value to set the sunrise datetime.
-        """
-        logging.debug(f'set _sunrise_datetime to {value}')
-        self._sunrise_datetime = value
-
-    @property
-    def sunset_datetime(self):
-        """
-        Returns the sunset datetime.
-        """
-        return self.solar_data.sunset_datetime
-
-    @sunset_datetime.setter
-    def sunset_datetime(self, value):
-        """
-        Sets the sunset datetime.
-
-        Args:
-            value: The value to set the sunset datetime.
-        """
-        logging.debug(f'set _sunset_datetime to {value}')
-        self._sunset_datetime = value
-
-    @property
     def city(self):
-        """
-        Returns the city for solar data.
-        """
+        """Returns the city for solar data."""
         return self._city
 
     @city.setter
     def city(self, value):
-        """
-        Sets the city for solar data.
-
-        Args:
-            value: The value to set the city.
-        """
+        """setter for city"""
         logging.info(f"Setting city: {value}")
         self._city = str(value)
 
     @property
     def country(self):
-        """
-        Returns the country for solar data.
-        """
+        """Returns the country for solar data. """
         return self._country
 
     @country.setter
     def country(self, value):
-        """
-        Sets the country for solar data.
-
-        Args:
-            value: The value to set the country.
-        """
+        """Sets the country for solar data."""
         logging.info(f"Setting country: {value}")
         self._country = str(value)
 
     @property
     def requested_day(self):
-        """
-        Returns the requested day for solar data.
-        """
+        """Returns the requested day for solar data."""
         return self._requested_day
 
     @requested_day.setter
     def requested_day(self, value):
-        """
-        Sets the requested day for solar data.
-
-        Args:
-            value: The value to set the requested day.
-        """
+        """Sets the requested day for solar data."""
         logging.info(f"Setting requested_day: {value}")
         self._requested_day = value
 
     @property
     def requested_hour(self):
-        """
-        Returns the requested hour for solar data.
-        """
+        """Returns the requested hour for solar data."""
         return self._requested_hour
 
     @requested_hour.setter
     def requested_hour(self, value):
-        """
-        Sets the requested hour for solar data.
-
-        Args:
-            value: The value to set the requested hour.
-        """
+        """Sets the requested hour for solar data."""
         logging.info(f"Setting requested_hour: {value}")
         self._requested_hour = value
 
-    @property
-    def cloud_coverage(self):
-        """
-        Returns the cloud coverage for the city.
-        """
-        return self.weather.cloud_coverage

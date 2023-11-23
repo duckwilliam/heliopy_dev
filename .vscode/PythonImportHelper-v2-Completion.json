@@ -130,6 +130,38 @@
         "documentation": {}
     },
     {
+        "label": "solardata",
+        "importPath": "classes",
+        "description": "classes",
+        "isExtraImport": true,
+        "detail": "classes",
+        "documentation": {}
+    },
+    {
+        "label": "weather",
+        "importPath": "classes",
+        "description": "classes",
+        "isExtraImport": true,
+        "detail": "classes",
+        "documentation": {}
+    },
+    {
+        "label": "timedata",
+        "importPath": "classes",
+        "description": "classes",
+        "isExtraImport": true,
+        "detail": "classes",
+        "documentation": {}
+    },
+    {
+        "label": "geodata",
+        "importPath": "classes",
+        "description": "classes",
+        "isExtraImport": true,
+        "detail": "classes",
+        "documentation": {}
+    },
+    {
         "label": "classes.wrapper",
         "kind": 6,
         "isExtraImport": true,
@@ -150,10 +182,82 @@
     {
         "label": "Geo",
         "kind": 6,
+        "importPath": "dev.source.BAK.heliopy.classes.geodata",
+        "description": "dev.source.BAK.heliopy.classes.geodata",
+        "peekOfCode": "class Geo:\n    def __init__(self,\n                 city_input: str,\n                 country_input: str = None\n                 ):\n        self.geo = geopy.Nominatim(user_agent=\"heliopy\")\n        self._city = city_input\n        self._country = country_input\n        self.get_geodata()\n    @property",
+        "detail": "dev.source.BAK.heliopy.classes.geodata",
+        "documentation": {}
+    },
+    {
+        "label": "Sun",
+        "kind": 6,
+        "importPath": "dev.source.BAK.heliopy.classes.solardata",
+        "description": "dev.source.BAK.heliopy.classes.solardata",
+        "peekOfCode": "class Sun:\n    \"\"\"\n    Class Illuminaion:\n    Calculate Outside Illumination in Lux\n    for given location and time\n    \"\"\"\n    def __init__(self,\n                 latitude: float, \n                 longitude: float,\n                 date: datetime.datetime,",
+        "detail": "dev.source.BAK.heliopy.classes.solardata",
+        "documentation": {}
+    },
+    {
+        "label": "Time",
+        "kind": 6,
+        "importPath": "dev.source.BAK.heliopy.classes.timedata",
+        "description": "dev.source.BAK.heliopy.classes.timedata",
+        "peekOfCode": "class Time:\n    def __init__(self,\n                 time_input = None,\n                 day_input: str = None,\n                 timezone_input: str = None,\n                 ):\n        self.init_complete = False\n        self.time = None if time_input is None else time_input\n        self.day = day_input\n        self.timezone = timezone_input",
+        "detail": "dev.source.BAK.heliopy.classes.timedata",
+        "documentation": {}
+    },
+    {
+        "label": "updater",
+        "kind": 2,
+        "importPath": "dev.source.BAK.heliopy.classes.timedata",
+        "description": "dev.source.BAK.heliopy.classes.timedata",
+        "peekOfCode": "def updater(func):\n    @functools.wraps(func)\n    def wrapper(self, *args, **kwargs):\n        print(\"wrapper start\")\n        method = func(self, *args, **kwargs)\n        print(f\"method {func} called\")\n        for level in self.dependent_attributes.keys():\n            for attr in self.dependent_attributes[level]:\n                setattr(self, attr, None)\n                raise AttributeError(f\"The {attr} is None.\")\\",
+        "detail": "dev.source.BAK.heliopy.classes.timedata",
+        "documentation": {}
+    },
+    {
+        "label": "Weather",
+        "kind": 6,
+        "importPath": "dev.source.BAK.heliopy.classes.weather",
+        "description": "dev.source.BAK.heliopy.classes.weather",
+        "peekOfCode": "class Weather:\n    \"\"\"\n    Weather class:\n    Using the OpenWeatherMap API, get current weather\n    infomation for given time and location.\n    \"\"\"\n    def __init__(self,\n                 latitude: float,\n                 longitude: float,\n                 name=None",
+        "detail": "dev.source.BAK.heliopy.classes.weather",
+        "documentation": {}
+    },
+    {
+        "label": "SolarMain",
+        "kind": 6,
+        "importPath": "dev.source.BAK.heliopy.classes.wrapper",
+        "description": "dev.source.BAK.heliopy.classes.wrapper",
+        "peekOfCode": "class SolarMain:\n    \"\"\"\n    **Class**: `SolarMain`\n    Initializes the `SolarMain` class.\n    \"\"\"\n    def __init__(self,\n                 city: str,\n                 name=None,\n                 country: str = None,\n                 requested_day: str = None,",
+        "detail": "dev.source.BAK.heliopy.classes.wrapper",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "dev.source.BAK.heliopy.builder",
+        "description": "dev.source.BAK.heliopy.builder",
+        "peekOfCode": "def main(city: str,\n         time=None,\n         day=None,\n         country: str = None,\n         timezone: str = None):\n    \"\"\" Main function:\n    Creates an object 'helios' that generates, stores and \n    updates the desired data. \n    Returns the object itself for further Processing.\n    The following arguments can be passed to this function:",
+        "detail": "dev.source.BAK.heliopy.builder",
+        "documentation": {}
+    },
+    {
+        "label": "Geo",
+        "kind": 6,
         "importPath": "dev.source.heliopy.classes.geodata",
         "description": "dev.source.heliopy.classes.geodata",
-        "peekOfCode": "class Geo:\n    def __init__(self,\n                 city_input: str,\n                 country_input: str = None\n                 ):\n        self.geo = geopy.Nominatim(user_agent=\"heliopy\")\n        self._city = city_input\n        self._country = country_input\n        self.get_geodata()\n    @property",
+        "peekOfCode": "class Geo:\n    def __init__(self,\n                 city_input: str,\n                 country_input: str = None\n                 ):\n        self.geo = geopy.Nominatim(user_agent=\"heliopy\")\n        self.city = city_input\n        self.country = country_input\n        self.get_geodata()\n    def get_geodata(self):",
         "detail": "dev.source.heliopy.classes.geodata",
+        "documentation": {}
+    },
+    {
+        "label": "angle_of_incidence",
+        "kind": 2,
+        "importPath": "dev.source.heliopy.classes.irradiance",
+        "description": "dev.source.heliopy.classes.irradiance",
+        "peekOfCode": "def angle_of_incidence(module_degree: 0 < int < 360,\n                       module_tilt: 0 < int < 90,\n                       solar_altitude: 0 < int < 90,\n                       solar_azimuth: 0 < int < 360,\n                       direct_normal_irradiance: float):\n    _AOI_alt = solar_altitude + module_tilt\n    _AOI_azim = 90 + (module_degree - solar_azimuth)\n    direct_normal_irradiance * math.cos()",
+        "detail": "dev.source.heliopy.classes.irradiance",
         "documentation": {}
     },
     {
@@ -161,7 +265,16 @@
         "kind": 6,
         "importPath": "dev.source.heliopy.classes.solardata",
         "description": "dev.source.heliopy.classes.solardata",
-        "peekOfCode": "class Sun:\n    \"\"\"\n    Class Illuminaion:\n    Calculate Outside Illumination in Lux\n    for given location and time\n    \"\"\"\n    def __init__(self,\n                 latitude: float, \n                 longitude: float,\n                 date: datetime.datetime,",
+        "peekOfCode": "class Sun:\n    \"\"\"\n    Class Illuminaion:\n    Calculate Outside Illumination in Lux\n    for given location and time\n    \"\"\"\n    def __init__(self,\n                 timedata: timedata.Time,\n                 geodata: geodata.Geo,\n                 weather: weather.Weather",
+        "detail": "dev.source.heliopy.classes.solardata",
+        "documentation": {}
+    },
+    {
+        "label": "rounder",
+        "kind": 2,
+        "importPath": "dev.source.heliopy.classes.solardata",
+        "description": "dev.source.heliopy.classes.solardata",
+        "peekOfCode": "def rounder(decimals: int):\n    def decorator(func):\n        def wrapper(*args, **kwargs):\n            result = func(*args, **kwargs)\n            return round(result+10**(-len(str(result))-1), decimals)\n        return wrapper\n    return decorator\nclass Sun:\n    \"\"\"\n    Class Illuminaion:",
         "detail": "dev.source.heliopy.classes.solardata",
         "documentation": {}
     },
@@ -188,7 +301,7 @@
         "kind": 6,
         "importPath": "dev.source.heliopy.classes.weather",
         "description": "dev.source.heliopy.classes.weather",
-        "peekOfCode": "class Weather:\n    \"\"\"\n    Weather class:\n    Using the OpenWeatherMap API, get current weather\n    infomation for given time and location.\n    \"\"\"\n    def __init__(self,\n                 latitude: float,\n                 longitude: float,\n                 name=None",
+        "peekOfCode": "class Weather:\n    \"\"\"\n    Weather class:\n    Using the OpenWeatherMap API, get current weather\n    infomation for given time and location.\n    \"\"\"\n    def __init__(self,\n                 geo_data: geodata.Geo\n                 ):\n        self.geodata = geo_data",
         "detail": "dev.source.heliopy.classes.weather",
         "documentation": {}
     },
@@ -206,7 +319,7 @@
         "kind": 2,
         "importPath": "dev.source.heliopy.builder",
         "description": "dev.source.heliopy.builder",
-        "peekOfCode": "def main(city: str,\n         time = None,\n         day = None,\n         country: str = None,\n         timezone: str = None):\n    \"\"\" Main function:\n    Creates an object 'helios' that generates, stores and \n    updates the desired data. \n    Returns the object itself for further Processing.\n    The following arguments can be passed to this function:",
+        "peekOfCode": "def main(city: str,\n         time=None,\n         day=None,\n         country: str = None,\n         timezone: str = None):\n    \"\"\" Main function:\n    Creates an object 'helios' that generates, stores and \n    updates the desired data. \n    Returns the object itself for further Processing.\n    The following arguments can be passed to this function:",
         "detail": "dev.source.heliopy.builder",
         "documentation": {}
     },

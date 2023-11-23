@@ -1,3 +1,4 @@
+
 import argparse
 from builder import main as build
 
@@ -34,11 +35,17 @@ if __name__ == "__main__":
                         help="Timezone as\
                             [REGION/CITY], if none is provided,\
                                 local timezone will be used.")
-
+    
     args = parser.parse_args()
-
-    build(city=args.city,
-          time=args.time,
-          day=args.day,
-          country=args.country,
-          timezone=args.timezone)
+    _city = args.city
+    _country = args.country
+    _day = args.day
+    _time = args.time
+    _timezone = args.timezone
+    
+    build(city=_city,
+          time=_time,
+          day=_day,
+          country=_country,
+          timezone=_timezone)
+    
