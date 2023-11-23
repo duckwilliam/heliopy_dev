@@ -10,35 +10,36 @@ class Weather:
     Using the OpenWeatherMap API, get current weather
     infomation for given time and location.
     """
+
     def __init__(self,
                  geo_data: geodata.Geo,
-                 api_key_path = None
-                 ):
+                 api_key_path=None,
+                 api_key=None):
         self.geodata = geo_data
         self.api_weather = '/data/2.5/weather?'
         self._cloud_coverage = None
-        self.api_key_path = os.path.join(os.path.dirname(api_key_path), 'api_key.txt')
-        self.api_key = self.get_api_key()
-        
+        self.api_key_path = os.path.join(
+            os.path.dirname(
+                api_key_path),
+            'api_key.txt') if api_key_path is not None else None
+        self.api_key = api_key if api_key is not None else self.get_api_key()
+
     def get_api_key(self):
-        api_key_env = os.environ['OPENWEATHERMAP_API_KEY']
-        if api_key_env is not None:
-            _api_key = api_key_env
-        else:
-            try:
-                with open(self.api_key_path, 'r') as _keyfile:
-                    _api_key = _keyfile.read()
-            except Exception as exc:
-                raise FileNotFoundError('OpenWeatherMap\
-                    API key not found.') from exc
-        if _api_key is not None:
-            return _api_key
-        else:
-            raise ValueError('OpenWeatherMap API key is not valid.')
-        
-        
-            
-          
+        """
+        Get the OpenWeatherMap API key.
+        Returns:
+            str: The OpenWeatherMap API key.
+        Raises:
+            ValueError: If the API key is not found or is not valid.
+        """
+        try:
+            return os.environ.get(
+                'OPENWEATHERMAP_API_KEY') or open(
+                    self.api_key_path, encoding='utf-8').read().strip()
+        except Exception as exc:
+            raise ValueError(
+                'OpenWeatherMap API key not found or is not valid.') from exc
+    
     def get_weather(self):
         """
         Calls OpenWeatherMap API to get cloud coverage of the city and
@@ -53,7 +54,6 @@ class Weather:
         # _api_response = _api_response_raw.json()
         _cloud_coverage = _api_response['clouds']['all']
         self._cloud_coverage = float(_cloud_coverage)
-
 
     @property
     def cloud_coverage(self):

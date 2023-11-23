@@ -12,8 +12,10 @@ class SolarMain:
                  name=None,
                  country: str = None,
                  requested_day: str = None,
-                 requested_hour = None,
-                 requested_timezone: str = None
+                 requested_hour=None,
+                 requested_timezone: str = None,
+                 api_key_path=None,
+                 api_key=None
                  ):
         """
         Initializes the `SolarMain` class.
@@ -33,6 +35,8 @@ class SolarMain:
         self.requested_day = requested_day
         self.requested_hour = requested_hour
         self.requested_timezone = requested_timezone
+        self.api_key = api_key
+        self.api_key_path = api_key_path
         self.time_init()
         self.geo_init()
         self.weather_init()
@@ -50,7 +54,10 @@ class SolarMain:
             country_input=self.country)
             
     def weather_init(self):
-        self.weather = weather.Weather(geo_data=self.geo_data)
+        self.weather = weather.Weather(
+            geo_data=self.geo_data,
+            api_key_path=self.api_key_path,
+            api_key=self.api_key)
             
     def solar_init(self):
         self.solar_data = solardata.Sun(

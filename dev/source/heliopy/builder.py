@@ -10,10 +10,14 @@ import datetime
 
 
 def main(city: str,
+         text: bool = False,
          time=None,
          day=None,
          country: str = None,
-         timezone: str = None):
+         timezone: str = None,
+         api_key_path: str = None,
+         api_key: str = None
+         ):
     """ Main function:
     Creates an object 'helios' that generates, stores and 
     updates the desired data. 
@@ -69,7 +73,10 @@ def main(city: str,
                                country=country,
                                requested_day=day,
                                requested_hour=time,
-                               requested_timezone=timezone)
-    
-
-    return helios
+                               requested_timezone=timezone,
+                               api_key_path=api_key_path,
+                               api_key=api_key)
+    if text:
+        print(helios)
+    else:
+        return helios
