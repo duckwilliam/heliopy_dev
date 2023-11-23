@@ -11,13 +11,34 @@ class Weather:
     infomation for given time and location.
     """
     def __init__(self,
-                 geo_data: geodata.Geo
+                 geo_data: geodata.Geo,
+                 api_key_path = None
                  ):
         self.geodata = geo_data
         self.api_weather = '/data/2.5/weather?'
         self._cloud_coverage = None
-        self.api_key = os.environ['OPENWEATHERMAP_API_KEY']
-  
+        self.api_key_path = os.path.join(os.path.dirname(api_key_path), 'api_key.txt')
+        self.api_key = self.get_api_key()
+        
+    def get_api_key(self):
+        api_key_env = os.environ['OPENWEATHERMAP_API_KEY']
+        if api_key_env is not None:
+            _api_key = api_key_env
+        else:
+            try:
+                with open(self.api_key_path, 'r') as _keyfile:
+                    _api_key = _keyfile.read()
+            except Exception as exc:
+                raise FileNotFoundError('OpenWeatherMap\
+                    API key not found.') from exc
+        if _api_key is not None:
+            return _api_key
+        else:
+            raise ValueError('OpenWeatherMap API key is not valid.')
+        
+        
+            
+          
     def get_weather(self):
         """
         Calls OpenWeatherMap API to get cloud coverage of the city and

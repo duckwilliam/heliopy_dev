@@ -301,7 +301,7 @@
         "kind": 6,
         "importPath": "dev.source.heliopy.classes.weather",
         "description": "dev.source.heliopy.classes.weather",
-        "peekOfCode": "class Weather:\n    \"\"\"\n    Weather class:\n    Using the OpenWeatherMap API, get current weather\n    infomation for given time and location.\n    \"\"\"\n    def __init__(self,\n                 geo_data: geodata.Geo\n                 ):\n        self.geodata = geo_data",
+        "peekOfCode": "class Weather:\n    \"\"\"\n    Weather class:\n    Using the OpenWeatherMap API, get current weather\n    infomation for given time and location.\n    \"\"\"\n    def __init__(self,\n                 geo_data: geodata.Geo,\n                 api_key_path = None\n                 ):",
         "detail": "dev.source.heliopy.classes.weather",
         "documentation": {}
     },
