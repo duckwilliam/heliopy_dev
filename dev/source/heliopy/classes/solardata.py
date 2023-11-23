@@ -18,6 +18,7 @@ def rounder(decimals: int):
         return wrapper
     return decorator
 
+
 class Sun:
     """
     Class Illuminaion:
@@ -124,7 +125,8 @@ class Sun:
         _hra = -1 * self.sun_extr
         sunrise_hour = (_hra / math.radians(15)) - (_tcf_rad / 60) + 12
         sunrise_hour_td = datetime.timedelta(seconds=sunrise_hour * 3600)
-        _sunrise = datetime.datetime.combine(self.day, datetime.datetime.min.time()) + sunrise_hour_td
+        _sunrise = datetime.datetime.combine(
+            self.day, datetime.datetime.min.time()) + sunrise_hour_td
         return _sunrise
 
     @property
@@ -133,7 +135,8 @@ class Sun:
         _hra = self.sun_extr
         sunset_hour = (_hra / math.radians(15)) - (_tcf_rad / 60) + 12
         sunset_hour_td = datetime.timedelta(seconds=sunset_hour * 3600)
-        _sunset = datetime.datetime.combine(self.day, datetime.datetime.min.time()) + sunset_hour_td
+        _sunset = datetime.datetime.combine(
+            self.day, datetime.datetime.min.time()) + sunset_hour_td
         return _sunset
 
     @property
@@ -256,4 +259,7 @@ class Sun:
     @property
     def sun_up(self):
         _now = self.timedata.date
-        return self.timedata.timezone.localize(self.sunrise_datetime) < _now < self.timedata.timezone.localize(self.sunset_datetime)
+        return (self.timedata.timezone.localize(self.sunrise_datetime) <
+                _now <
+                self.timedata.timezone.localize(self.sunset_datetime))
+

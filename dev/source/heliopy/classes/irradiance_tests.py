@@ -1,24 +1,5 @@
-#!/usr/bin/env python3
 
-"""
-A module for calculating solar irradiance attributes.
 
-This module provides functions and classes for calculating various
-solar attributes, such as module irradiance, 
-optimal tilt and azimuth angles, and effective length of illuminated panels.
-
-Classes:
-- Irradiance: Calculate solar irradiance for a
-   given module tilt and orientation.
-
-Functions:
-- area_total: Calculate the total surface area of illuminated panels.
-- module_lit_optimal: Calculate the optimal tilt and azimuth angles
-  that maximize the module illumination.
-- effective_length: Calculate the effective length of an illuminated panel.
-"""
-
-import itertools
 import math
 from . import solardata, geodata
 
@@ -30,10 +11,8 @@ class Irradiance:
     Args:
         module_degree (int): The degree of the module orientation (0-359).
         module_tilt (int): The tilt angle of the module (0-89).
-        solar_data (solardata.Sun):
-            An instance of the solardata.Sun class containing solar data.
-        geo_data (geodata.Geo):
-            An instance of the geodata.Geo class containing geographical data.
+        solar_data (solardata.Sun): An instance of the solardata.Sun class containing solar data.
+        geo_data (geodata.Geo): An instance of the geodata.Geo class containing geographical data.
 
     Attributes:
         alt_rad (float): The solar altitude angle in radians.
@@ -41,19 +20,14 @@ class Irradiance:
         tilt_rad (float): The module tilt angle in radians.
         deg_rad (float): The module orientation angle in radians.
         incident (float): The direct illuminance from solar data.
-        horizontal (float): The horizontal illuminance calculated
-        based on the incident illuminance and solar altitude.
+        horizontal (float): The horizontal illuminance calculated based on the incident illuminance and solar altitude.
         latitude (float): The latitude from geographical data.
 
     Properties:
-        module (float): The solar module irradiance calculated
-        based on the tilt and orientation angles.
-        tilt_optimal (int):
-            The optimal tilt angle that maximizes the module irradiance.
-        deg_optimal (int):
-            The optimal orientation angle that maximizes the module irradiance.
-        module_optimal (float): The optimal module irradiance calculated
-        based on the optimal tilt and orientation angles.
+        module (float): The solar module irradiance calculated based on the tilt and orientation angles.
+        tilt_optimal (int): The optimal tilt angle that maximizes the module irradiance.
+        deg_optimal (int): The optimal orientation angle that maximizes the module irradiance.
+        module_optimal (float): The optimal module irradiance calculated based on the optimal tilt and orientation angles.
     """
     def __init__(self,
                  module_degree: 0 < int < 360,
@@ -69,10 +43,8 @@ class Irradiance:
         Args:
             module_degree (int): The degree of the module orientation (0-359).
             module_tilt (int): The tilt angle of the module (0-89).
-            solar_data (solardata.Sun): An instance of the
-            solardata.Sun class containing solar data.
-            geo_data (geodata.Geo): An instance of the
-            geodata.Geo class containing geographical data.
+            solar_data (solardata.Sun): An instance of the solardata.Sun class containing solar data.
+            geo_data (geodata.Geo): An instance of the geodata.Geo class containing geographical data.
         """
         self.alt_rad = math.radians(solar_data.altitude)
         self.azi_rad = math.radians(solar_data.solar_azimuth)
@@ -88,14 +60,11 @@ class Irradiance:
                tilt: int = None,
                deg: int = None):
         """
-        Calculate the solar module irradiance based on
-        the tilt and orientation angles.
+        Calculate the solar module irradiance based on the tilt and orientation angles.
 
         Args:
-            tilt (int, optional): The tilt angle of the module (0-89). 
-            Defaults to None.
-            deg (int, optional): The degree of the module orientation (0-359). 
-            Defaults to None.
+            tilt (int, optional): The tilt angle of the module (0-89). Defaults to None.
+            deg (int, optional): The degree of the module orientation (0-359). Defaults to None.
 
         Returns:
             float: The calculated solar module irradiance.
@@ -116,20 +85,18 @@ class Irradiance:
         Create dictionary with all module tilt and azimuth 
         combinations and respective irradiance values
         """
+        angles_dict = {}
         deg_range = range(180) if self.latitude > 0 else range(181, 360)
-        angles_dict = {
-            (tilt, azimuth): self.module(tilt=tilt, deg=azimuth)
-            for tilt, azimuth in itertools.product(
-                range(self.tilt_min, 90), deg_range
-            )
-        }
+        for tilt in range(self.tilt_min, 90):
+            for azimuth in deg_range:
+                angles_dict[(tilt, azimuth)] = self.module(
+                    tilt=tilt, deg=azimuth)
         return angles_dict
     
     @property
     def tilt_array(self):
         """
-        Calculate the optimal tilt angle that maximizes
-        the solar module irradiance.
+        Calculate the optimal tilt angle that maximizes the solar module irradiance.
 
         Returns:
             dict: the module irradiance for every angle
@@ -142,8 +109,7 @@ class Irradiance:
     @property
     def deg_array(self):
         """
-        Calculate the optimal azimuth angle that maximizes
-        the solar module irradiance.
+        Calculate the optimal azimuth angle that maximizes the solar module irradiance.
 
         Returns:
             dict: the module irradiance for every angle
@@ -156,8 +122,7 @@ class Irradiance:
     @property
     def module_optimal(self):
         """
-        Calculate the optimal module irradiance based on the
-        optimal tilt and orientation angles.
+        Calculate the optimal module irradiance based on the optimal tilt and orientation angles.
 
         Returns:
             float: The optimal module irradiance.
@@ -166,22 +131,12 @@ class Irradiance:
         deg_optimal = max(self.deg_array, key=self.deg_array.get)
         return self.module(tilt=tilt_optimal, deg=deg_optimal)
 
+
     def effective_length(self,
                          panel_distance: int,
                          panel_size: int,
                          panel_inclination
                          ):
-        """
-        Calculate the illuminated length of a panel edge.
-
-        Args:
-            panel_distance (int): The distance between panels.
-            panel_size (int): The size of a single panel.
-            panel_inclination: The inclination angle of the panel.
-
-        Returns:
-            float: The effective length of the illuminated panel.
-        """    
         _dark = math.sin(
             math.degrees(
                 panel_inclination)) - math.sin(
@@ -199,25 +154,8 @@ class Irradiance:
                    panel_spacing_vertical: int,
                    module_azimuth: int,
                    module_tilt: int):
-        """
-        Calculate the total illuminated surface area of panels at
-        given tilt and azimuth.
-
-        Args:
-            panel_width (int): The width of a single panel.
-            panel_height (int): The height of a single panel.
-            panel_amount (int): The total number of panels.
-            panel_rows (int): The number of rows of panels.
-            panel_spacing_horizontal (int):
-                The horizontal spacing between panels.
-            panel_spacing_vertical (int): The vertical spacing between panels.
-            module_azimuth (int): The azimuth angle of the module.
-            module_tilt (int): The tilt angle of the module.
-
-        Returns:
-            float: The total illuminated surface area.
-        """
         surface_single = panel_amount * panel_width 
+        surface_total = surface_single * panel_height
         panel_columns = panel_amount // panel_rows
         base_degree_deviation = abs(self.deg_base - module_azimuth)
         min_tilt_deviation = abs(self.tilt_min - module_tilt)
@@ -249,22 +187,6 @@ class Irradiance:
                            panel_r: int,
                            panel_spacing_h: int,
                            panel_spacing_v: int) -> tuple:
-        """
-        Calculate the optimal tilt and azimuth angles that maximize 
-        the module illumination.
-
-        Args:
-            panel_w (int): The width of a single panel.
-            panel_h (int): The height of a single panel.
-            panel_a (int): The total number of panels.
-            panel_r (int): The number of rows of panels.
-            panel_spacing_h (int): The horizontal spacing between panels.
-            panel_spacing_v (int): The vertical spacing between panels.
-
-        Returns:
-            tuple: The optimal tilt and azimuth angles as a tuple
-            (tilt, azimuth).
-        """
         lit_optimal_dict = {
             (tilt, azi): illumination
             * self.area_total(

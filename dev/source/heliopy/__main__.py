@@ -1,5 +1,5 @@
 import argparse
-from builder import main as build
+from .builder import main as build
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Scratchpad Testcript")
@@ -62,7 +62,7 @@ if __name__ == "__main__":
                         provided (use -k [API-KEY])\
                             If neither is provided, will try \
                                 to look for 'OPENWEATHERMAP_API_KEY' \
-                                    in OS environment")    
+                                    in OS environment")
 
     args = parser.parse_args()
     build(city=args.city,

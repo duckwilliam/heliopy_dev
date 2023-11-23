@@ -28,12 +28,11 @@ def updater(func):
 
 class Time:
     def __init__(self,
-                 time_input = None,
+                 time_input=None,
                  day_input: str = None,
                  timezone_input: str = None,
                  ):
         self.init_complete = False
-        
         self.time = None if time_input is None else time_input
         self.day = day_input
         self.timezone = timezone_input
@@ -74,10 +73,7 @@ class Time:
             self._time = self.convert_timestr(value)
         else:
             self._time = self.current_time
-      #  self._time = self.convert_timestr(value) if isinstance(value, str)\
-          #  else value
-        
-        
+
     @property
     def current_time(self):
         return datetime.datetime.time(datetime.datetime.now())
