@@ -1,4 +1,4 @@
-from classes import solardata, weather, timedata, geodata
+from classes import solardata, weather, timedata, geodata, irradiance
 import logging
 
 class SolarMain:
@@ -15,7 +15,9 @@ class SolarMain:
                  requested_hour=None,
                  requested_timezone: str = None,
                  api_key_path=None,
-                 api_key=None
+                 api_key=None,
+                 module_deg: int = 180,
+                 module_tilt: int = 0
                  ):
         """
         Initializes the `SolarMain` class.
@@ -37,10 +39,13 @@ class SolarMain:
         self.requested_timezone = requested_timezone
         self.api_key = api_key
         self.api_key_path = api_key_path
+        self.module_deg = module_deg
+        self.module_tilt = module_tilt
         self.time_init()
         self.geo_init()
         self.weather_init()
         self.solar_init()
+        self.irradiance_init()
         
     def time_init(self):
         self.time_data = timedata.Time(
@@ -64,7 +69,14 @@ class SolarMain:
             timedata=self.time_data,
             geodata=self.geo_data,
             weather=self.weather)
-            
+        
+    def irradiance_init(self):
+        self.irradiance = irradiance.Irradiance(
+            module_degree=self.module_deg,
+            module_tilt=self.module_tilt,
+            solardata=self.solar_data,
+            geodata=self.geo_data)
+                  
             
     @property
     def city(self):

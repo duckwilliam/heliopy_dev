@@ -9,6 +9,7 @@ from . import timedata
 from . import geodata
 from . import weather
 
+
 def rounder(decimals: int):
     def decorator(func):
         def wrapper(*args, **kwargs):
@@ -107,7 +108,7 @@ class Sun:
         return _da_rad
 
     @property
-    def sun_extr(self):
+    def sun_extr(self):  
         _lat = math.radians(self.geodata.latitude)
         _da = self.declination_angle_rad
         _corr_rad = math.radians(90.833)
