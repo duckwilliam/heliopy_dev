@@ -5,8 +5,7 @@ which stores and calculates the desired values. For a full description
 of available parameters, check the main() docstring. 
 """
 
-import classes.wrapper as wrapper
-import datetime
+from .classes import wrapper
 
 
 def main(city: str,

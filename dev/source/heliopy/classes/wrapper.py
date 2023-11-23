@@ -1,4 +1,4 @@
-from classes import solardata, weather, timedata, geodata, irradiance
+from classes import solardata, weather, timedata, geodata, irradiance, optimums
 import logging
 
 class SolarMain:
@@ -76,7 +76,26 @@ class SolarMain:
             module_tilt=self.module_tilt,
             solardata=self.solar_data,
             geodata=self.geo_data)
-                  
+        
+    def optimums_init(self,
+                      width: int,
+                      height: int,
+                      amount: int,
+                      rows: int,
+                      spacing_horizontal: int = None,
+                      spacing_vertical: int = None,
+                      azimuth: int = None,
+                      tilt: int = None):
+        self.optimums = optimums.Optimums(
+            irradiance_data=self.irradiance,
+            panel_width=width,
+            panel_height=height,
+            panel_amount=amount,
+            panel_rows=rows,
+            panel_spacing_horizontal=spacing_horizontal,
+            panel_spacing_vertical=spacing_vertical,
+            module_azimuth=azimuth,
+            module_tilt=tilt)
             
     @property
     def city(self):
