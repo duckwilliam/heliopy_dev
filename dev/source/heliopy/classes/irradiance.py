@@ -109,7 +109,7 @@ class Irradiance:
                         deg_rad - self.azi_rad) + math.sin(
                             self.alt_rad) * math.cos(
                                 tilt_rad))
-        return _s_module
+        return math.degrees(_s_module)
             
     def angles_array(self) -> dict:
         """

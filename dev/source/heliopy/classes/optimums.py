@@ -20,8 +20,8 @@ class Optimums:
         self.panel_rows = panel_rows
         self.panel_spacing_horizontal = panel_spacing_horizontal if panel_spacing_horizontal is not None else 0
         self.panel_spacing_vertical = panel_spacing_vertical if panel_spacing_vertical is not None else 0
-        self.module_azimuth = module_azimuth
-        self.module_tilt = module_tilt
+        self.module_azimuth = module_azimuth if module_azimuth is not None else self.irradiance_data.deg_base
+        self.module_tilt = module_tilt if module_tilt is not None else self.irradiance_data.tilt_min
 
     def area_total(self,
                    module_azimuth: int,
