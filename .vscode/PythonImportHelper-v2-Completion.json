@@ -138,6 +138,46 @@
         "documentation": {}
     },
     {
+        "label": "geodata",
+        "importPath": "classes",
+        "description": "classes",
+        "isExtraImport": true,
+        "detail": "classes",
+        "documentation": {}
+    },
+    {
+        "label": "timedata",
+        "importPath": "classes",
+        "description": "classes",
+        "isExtraImport": true,
+        "detail": "classes",
+        "documentation": {}
+    },
+    {
+        "label": "geodata",
+        "importPath": "classes",
+        "description": "classes",
+        "isExtraImport": true,
+        "detail": "classes",
+        "documentation": {}
+    },
+    {
+        "label": "weather",
+        "importPath": "classes",
+        "description": "classes",
+        "isExtraImport": true,
+        "detail": "classes",
+        "documentation": {}
+    },
+    {
+        "label": "solardata",
+        "importPath": "classes",
+        "description": "classes",
+        "isExtraImport": true,
+        "detail": "classes",
+        "documentation": {}
+    },
+    {
         "label": "weather",
         "importPath": "classes",
         "description": "classes",
@@ -162,12 +202,45 @@
         "documentation": {}
     },
     {
+        "label": "irradiance",
+        "importPath": "classes",
+        "description": "classes",
+        "isExtraImport": true,
+        "detail": "classes",
+        "documentation": {}
+    },
+    {
+        "label": "optimums",
+        "importPath": "classes",
+        "description": "classes",
+        "isExtraImport": true,
+        "detail": "classes",
+        "documentation": {}
+    },
+    {
+        "label": "wrapper",
+        "importPath": "classes",
+        "description": "classes",
+        "isExtraImport": true,
+        "detail": "classes",
+        "documentation": {}
+    },
+    {
         "label": "classes.wrapper",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "classes.wrapper",
         "description": "classes.wrapper",
         "detail": "classes.wrapper",
+        "documentation": {}
+    },
+    {
+        "label": "itertools",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "itertools",
+        "description": "itertools",
+        "detail": "itertools",
         "documentation": {}
     },
     {
@@ -252,12 +325,30 @@
         "documentation": {}
     },
     {
-        "label": "angle_of_incidence",
-        "kind": 2,
+        "label": "Irradiance",
+        "kind": 6,
         "importPath": "dev.source.heliopy.classes.irradiance",
         "description": "dev.source.heliopy.classes.irradiance",
-        "peekOfCode": "def angle_of_incidence(module_degree: 0 < int < 360,\n                       module_tilt: 0 < int < 90,\n                       solar_altitude: 0 < int < 90,\n                       solar_azimuth: 0 < int < 360,\n                       direct_normal_irradiance: float):\n    _AOI_alt = solar_altitude + module_tilt\n    _AOI_azim = 90 + (module_degree - solar_azimuth)\n    direct_normal_irradiance * math.cos()",
+        "peekOfCode": "class Irradiance:\n    \"\"\"\n    Calculate solar irradiance for a given module tilt and orientation.\n    Args:\n        module_degree (int): The degree of the module orientation (0-359).\n        module_tilt (int): The tilt angle of the module (0-89).\n        solar_data (solardata.Sun):\n            An instance of the solardata.Sun class containing solar data.\n        geo_data (geodata.Geo):\n            An instance of the geodata.Geo class containing geographical data.",
         "detail": "dev.source.heliopy.classes.irradiance",
+        "documentation": {}
+    },
+    {
+        "label": "Irradiance",
+        "kind": 6,
+        "importPath": "dev.source.heliopy.classes.irradiance_tests",
+        "description": "dev.source.heliopy.classes.irradiance_tests",
+        "peekOfCode": "class Irradiance:\n    \"\"\"\n    Calculate solar irradiance for a given module tilt and orientation.\n    Args:\n        module_degree (int): The degree of the module orientation (0-359).\n        module_tilt (int): The tilt angle of the module (0-89).\n        solar_data (solardata.Sun): An instance of the solardata.Sun class containing solar data.\n        geo_data (geodata.Geo): An instance of the geodata.Geo class containing geographical data.\n    Attributes:\n        alt_rad (float): The solar altitude angle in radians.",
+        "detail": "dev.source.heliopy.classes.irradiance_tests",
+        "documentation": {}
+    },
+    {
+        "label": "Optimums",
+        "kind": 6,
+        "importPath": "dev.source.heliopy.classes.optimums",
+        "description": "dev.source.heliopy.classes.optimums",
+        "peekOfCode": "class Optimums:\n    def __init__(self,\n                 irradiance_data: irradiance.Irradiance,\n                 panel_width: int,\n                 panel_height: int,\n                 panel_amount: int,\n                 panel_rows: int,\n                 panel_spacing_horizontal: int = None,\n                 panel_spacing_vertical: int = None,\n                 module_azimuth: int = None,",
+        "detail": "dev.source.heliopy.classes.optimums",
         "documentation": {}
     },
     {
@@ -283,7 +374,7 @@
         "kind": 6,
         "importPath": "dev.source.heliopy.classes.timedata",
         "description": "dev.source.heliopy.classes.timedata",
-        "peekOfCode": "class Time:\n    def __init__(self,\n                 time_input = None,\n                 day_input: str = None,\n                 timezone_input: str = None,\n                 ):\n        self.init_complete = False\n        self.time = None if time_input is None else time_input\n        self.day = day_input\n        self.timezone = timezone_input",
+        "peekOfCode": "class Time:\n    def __init__(self,\n                 time_input=None,\n                 day_input: str = None,\n                 timezone_input: str = None,\n                 ):\n        self.init_complete = False\n        self.time = None if time_input is None else time_input\n        self.day = day_input\n        self.timezone = timezone_input",
         "detail": "dev.source.heliopy.classes.timedata",
         "documentation": {}
     },
@@ -301,7 +392,7 @@
         "kind": 6,
         "importPath": "dev.source.heliopy.classes.weather",
         "description": "dev.source.heliopy.classes.weather",
-        "peekOfCode": "class Weather:\n    \"\"\"\n    Weather class:\n    Using the OpenWeatherMap API, get current weather\n    infomation for given time and location.\n    \"\"\"\n    def __init__(self,\n                 geo_data: geodata.Geo,\n                 api_key_path = None\n                 ):",
+        "peekOfCode": "class Weather:\n    \"\"\"\n    Weather class:\n    Using the OpenWeatherMap API, get current weather\n    infomation for given time and location.\n    \"\"\"\n    def __init__(self,\n                 geo_data: geodata.Geo,\n                 api_key_path=None,\n                 api_key=None):",
         "detail": "dev.source.heliopy.classes.weather",
         "documentation": {}
     },
@@ -319,7 +410,7 @@
         "kind": 2,
         "importPath": "dev.source.heliopy.builder",
         "description": "dev.source.heliopy.builder",
-        "peekOfCode": "def main(city: str,\n         time=None,\n         day=None,\n         country: str = None,\n         timezone: str = None):\n    \"\"\" Main function:\n    Creates an object 'helios' that generates, stores and \n    updates the desired data. \n    Returns the object itself for further Processing.\n    The following arguments can be passed to this function:",
+        "peekOfCode": "def main(city: str,\n         text: bool = False,\n         time=None,\n         day=None,\n         country: str = None,\n         timezone: str = None,\n         api_key_path: str = None,\n         api_key: str = None\n         ):\n    \"\"\" Main function:",
         "detail": "dev.source.heliopy.builder",
         "documentation": {}
     },

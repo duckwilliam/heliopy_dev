@@ -5,9 +5,7 @@ General-purpose solar irradiance and brightness calculator.
 import logging
 import math
 import datetime
-from . import timedata
-from . import geodata
-from . import weather
+from classes import timedata, geodata, weather
 
 
 def rounder(decimals: int):
@@ -37,7 +35,7 @@ class Sun:
        
     @property
     def utc_time_delta(self):
-        delta = self.timedata.date - self.timedata.date_utc
+        delta = self.timedata.date - self.timedata.utc_time
         delta_seconds = delta.total_seconds() 
         delta_hours = divmod(delta_seconds, 3600)[0]
         return int(delta_hours)

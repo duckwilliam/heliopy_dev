@@ -5,7 +5,7 @@ which stores and calculates the desired values. For a full description
 of available parameters, check the main() docstring. 
 """
 
-from .classes import wrapper
+from classes import wrapper
 
 
 def main(city: str,

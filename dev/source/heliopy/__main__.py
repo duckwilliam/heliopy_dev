@@ -1,5 +1,5 @@
 import argparse
-from .builder import main as build
+from builder import main as build
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Scratchpad Testcript")

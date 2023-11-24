@@ -20,7 +20,7 @@ Functions:
 
 import itertools
 import math
-from . import solardata, geodata
+from classes import solardata, geodata
 
 
 class Irradiance:
@@ -56,12 +56,12 @@ class Irradiance:
         based on the optimal tilt and orientation angles.
     """
     def __init__(self,
-                 module_degree: 0 < int < 360,
-                 module_tilt: 0 < int < 90,
-                 module_degree_base: int,
-                 module_tilt_min: int,
-                 solar_data: solardata.Sun,
-                 geo_data: geodata.Geo
+                 module_degree: int,
+                 module_tilt: int,
+                 solardata: solardata.Sun,
+                 geodata: geodata.Geo,
+                 module_degree_base: int = None,
+                 module_tilt_min: int = None
                  ):
         """
         Initialize the Irradiance object.
@@ -74,15 +74,15 @@ class Irradiance:
             geo_data (geodata.Geo): An instance of the
             geodata.Geo class containing geographical data.
         """
-        self.alt_rad = math.radians(solar_data.altitude)
-        self.azi_rad = math.radians(solar_data.solar_azimuth)
+        self.alt_rad = math.radians(solardata.altitude)
+        self.azi_rad = math.radians(solardata.solar_azimuth)
         self.tilt_rad = math.radians(module_tilt)
         self.deg_rad = math.radians(module_degree)
-        self.tilt_min = module_tilt_min
-        self.deg_base = module_degree_base
-        self.incident = solar_data.direct_illuminance
+        self.tilt_min = module_tilt_min if module_tilt_min is not None else 0
+        self.deg_base = module_degree_base if module_degree_base is not None else 180
+        self.incident = solardata.direct_illuminance
         self.horizontal = self.incident * math.sin(self.alt_rad)
-        self.latitude = geo_data.latitude
+        self.latitude = geodata.latitude
 
     def module(self,
                tilt: int = None,
