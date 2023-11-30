@@ -53,7 +53,6 @@ class Time:
         """
         Gets the time property.
         """
-
         return self._time
     
    # @updater
